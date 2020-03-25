@@ -1,3 +1,7 @@
+## download data:
+
+1. python3 src/download_data.py
+
 ## movies.csv: 
 
 1. movieId: movie id
@@ -25,3 +29,4 @@
 4. timestamp: timestamp
 
 ---
+
