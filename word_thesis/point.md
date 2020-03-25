@@ -1,24 +1,24 @@
-Motivation:
+##Motivation:
 	Promote OpenISS
 	Solution：
 Allow the open source community to use OpenISS more in the AI field
+---
 
-
-Scenario:
+##Scenario:
 1.	Modification of KG
 2.	Visualization of KG
 3.	Movie RS
+---
 
-
-What application need it:
+##What application need it:
 	Movie RS
 	Book RS
 	News RS
-
-Dataset:
+---
+##Dataset:
 https://grouplens.org/datasets/movielens/
-
-reference:
+---
+##reference:
 1.	Frame rate. https://en.wikipedia.org/wiki/Frame_rate. Accessed: 2019- 07-23.
 2.	Software framework. https://en.wikipedia.org/wiki/Software_framework. Accessed: 2019-06-22.
 3.	RDF OWL difference https://www.cambridgesemantics.com/blog/semantic-university/learn-owl-rdfs/rdfs-vs-owl/
