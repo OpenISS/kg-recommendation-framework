@@ -2,9 +2,7 @@
 
 	Promote OpenISS
 	
-	Solution：
-	
-Allow the open source community to use OpenISS more in the AI field
+	Solution：Allow the open source community to use OpenISS more in the AI field
 ---
 
 ##Scenario:
@@ -25,6 +23,7 @@ Allow the open source community to use OpenISS more in the AI field
 
 https://grouplens.org/datasets/movielens/
 ---
+
 
 ##reference:
 
