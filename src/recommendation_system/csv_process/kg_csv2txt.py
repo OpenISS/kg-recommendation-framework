@@ -12,6 +12,7 @@ def kg2txt(file_path, content):
         num = 56000
         for row in reader:
             if i != -1:
+                movieid = row[0]
                 genre = row[2].split("|")
                 Director = row[3].split("|")
                 Writer = row[4].split("|")
@@ -23,7 +24,7 @@ def kg2txt(file_path, content):
                         if g not in person_name:
                             person_name[g] = num
                             num += 1
-                        content = content + str(i) + "\t" + "film.film.genre" + "\t" + str(person_name[g]) + "\n"
+                        content = content + str(movieid) + "\t" + "film.film.genre" + "\t" + str(person_name[g]) + "\n"
                 
                 for d in Director:
                     if d == "<PAD>":
@@ -32,7 +33,7 @@ def kg2txt(file_path, content):
                         if d not in person_name:
                             person_name[d] = num
                             num += 1
-                        content = content + str(i) + "\t" + "film.film.director" + "\t" + str(person_name[d]) + "\n"
+                        content = content + str(movieid) + "\t" + "film.film.director" + "\t" + str(person_name[d]) + "\n"
                 
                 for w in Writer:
                     if w == "<PAD>":
@@ -41,7 +42,7 @@ def kg2txt(file_path, content):
                         if w not in person_name:
                             person_name[w] = num
                             num += 1
-                        content = content + str(i) + "\t" + "film.film.writer" + "\t" + str(person_name[w]) + "\n"
+                        content = content + str(movieid) + "\t" + "film.film.writer" + "\t" + str(person_name[w]) + "\n"
                 
                 for s in Stars:
                     if s == "<PAD>":
@@ -50,7 +51,7 @@ def kg2txt(file_path, content):
                         if s not in person_name:
                             person_name[s] = num
                             num += 1
-                        content = content + str(i) + "\t" + "film.film.star" + "\t" + str(person_name[s]) + "\n"
+                        content = content + str(movieid) + "\t" + "film.film.star" + "\t" + str(person_name[s]) + "\n"
                 f = open('kg.txt', 'a')
                 # content = str(row[0]) + "\t" + str(i) + "\n"
                 # print(content)
