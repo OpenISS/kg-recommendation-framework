@@ -1,6 +1,6 @@
 import csv
 
-def csv2txt(file_path):
+def movieid2txt(file_path):
     print(file_path)
     with open(file_path,encoding="utf-8") as f:
         reader = csv.reader(f)
@@ -14,5 +14,5 @@ def csv2txt(file_path):
                 f.close()
             i += 1
 
-movies_file_path = "movies_director2.csv"
-csv2txt(movies_file_path)
+movies_file_path = "../../../data/movies_director2.csv"
+movieid2txt(movies_file_path)

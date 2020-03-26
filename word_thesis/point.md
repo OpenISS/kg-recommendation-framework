@@ -35,3 +35,7 @@
 5.	Py2neo documentation https://py2neo.org/2.0/
 6.	Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
 7.	
+
+
+##future work
+1. mongodb
