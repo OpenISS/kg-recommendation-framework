@@ -60,7 +60,7 @@ def kg2txt(file_path, content):
                 content = ""
             i += 1
 
-kg_file_path = "../../../data/movies_director2.csv"
+kg_file_path = "/Users/yuhaomao/Downloads/ml-1m/movies.txt"
 # kg_file_path = "test.csv"
 kg2txt(kg_file_path,content)
 # print(person_name)
