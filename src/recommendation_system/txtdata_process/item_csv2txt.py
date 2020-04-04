@@ -4,7 +4,7 @@ def movieid2txt(file_path):
     print(file_path)
     f = open(file_path, "r")
     lines = f.readlines()
-    i = 1
+    i = 0
     for row in lines:
         movieid = row.split("::")[0]
         f = open('item_index2entity_id.txt', 'a')
