@@ -1,0 +1,37 @@
+movieId,title,genres,Director,Writer,Stars
+1,Toy Story (1995),(no genres listed),John Lasseter,John Lasseter|Pete Docter,Tom Hanks|Tim Allen
+2,Jumanji (1995),(no genres listed),Joe Johnston,<PAD>,Robin Williams|Jonathan Hyde
+3,Grumpier Old Men (1995),(no genres listed),Howard Deutch,Mark Steven Johnson,<PAD>
+4,Waiting to Exhale (1995),(no genres listed),Forest Whitaker,Terry McMillan|Ronald Bass,Whitney Houston|Angela Bassett
+5,Father of the Bride Part II (1995),(no genres listed),Charles Shyer,Albert Hackett|Frances Goodrich,Steve Martin|Diane Keaton
+6,Heat (1995),(no genres listed),Michael Mann,Michael Mann,Al Pacino|Robert De Niro
+7,Sabrina (1995),(no genres listed),Sydney Pollack,Samuel A. Taylor|Billy Wilder,Harrison Ford|Julia Ormond
+8,Tom and Huck (1995),Adventure|Children,Peter Hewitt,Mark Twain|Stephen Sommers,Jonathan Taylor Thomas|Brad Renfro
+9,Sudden Death (1995),Action,Peter Hyams,Karen Elise Baldwin|Gene Quintano,Jean-Claude Van Damme|Powers Boothe
+10,GoldenEye (1995),Action|Adventure,Martin Campbell,Ian Fleming|Michael France,Pierce Brosnan|Sean Bean
+11,"American President, The (1995)",Comedy|Drama,Rob Reiner,Aaron Sorkin,Michael Douglas|Annette Bening
+12,Dracula: Dead and Loving It (1995),Comedy|Horror,Mel Brooks,Mel Brooks|Rudy De Luca,Leslie Nielsen|Peter MacNicol
+13,Balto (1995),Adventure|Animation,Simon Wells,Cliff Ruby|Elana Lesser,Kevin Bacon|Bob Hoskins
+14,Nixon (1995),Drama,Oliver Stone,Stephen J. Rivele|Christopher Wilkinson,Anthony Hopkins|Joan Allen
+15,Cutthroat Island (1995),Action|Adventure,Renny Harlin,Michael Frost Beckner|James Gorman,Geena Davis|Matthew Modine
+16,Casino (1995),Crime|Drama,Martin Scorsese,Nicholas Pileggi|Martin Scorsese,Robert De Niro|Sharon Stone
+17,Sense and Sensibility (1995),Drama|Romance,Ang Lee,Jane Austen|Emma Thompson,James Fleet|Tom Wilkinson
+18,Four Rooms (1995),Comedy,Allison Anders|Alexandre Rockwell,Allison Anders|Alexandre Rockwell,Sammi Davis|Amanda De Cadenet
+19,Ace Ventura: When Nature Calls (1995),Comedy,Steve Oedekerk,Jack Bernstein|Steve Oedekerk,Jim Carrey|Ian McNeice
+20,Money Train (1995),Action|Comedy,Joseph Ruben,Doug Richardson|David Loughery,Wesley Snipes|Woody Harrelson
+21,Get Shorty (1995),Comedy|Crime,Barry Sonnenfeld,Elmore Leonard|Scott Frank,John Travolta|Gene Hackman
+22,Copycat (1995),Crime|Drama,Jon Amiel,Ann Biderman|David Madsen,Sigourney Weaver|Holly Hunter
+23,Assassins (1995),Action|Crime,Richard Donner,Lilly Wachowski|Lana Wachowski,Sylvester Stallone|Antonio Banderas
+24,Powder (1995),Drama|Sci-Fi,Victor Salva,Victor Salva,Mary Steenburgen|Sean Patrick Flanery
+25,Leaving Las Vegas (1995),Drama|Romance,Mike Figgis,John O'Brien|Mike Figgis,Nicolas Cage|Elisabeth Shue
+26,Othello (1995),Drama,Oliver Parker,Oliver Parker|William Shakespeare,Laurence Fishburne|Irène Jacob
+27,Now and Then (1995),Children|Drama,Lesli Linka Glatter,I. Marlene King,Christina Ricci|Rosie O'Donnell
+28,Persuasion (1995),Drama|Romance,Roger Michell,Jane Austen|Nick Dear,Amanda Root|Ciarán Hinds
+29,"City of Lost Children, The (Cité des enfants perdus, La) (1995)",Adventure|Drama,Marc Caro|Jean-Pierre Jeunet,Gilles Adrien|Jean-Pierre Jeunet,Ron Perlman|Daniel Emilfork
+30,Shanghai Triad (Yao a yao yao dao waipo qiao) (1995),Crime|Drama,Yimou Zhang,Bi Feiyu|Li Xiao,Li Gong|Baotian Li
+31,Dangerous Minds (1995),Drama,John N. Smith,LouAnne Johnson|Ronald Bass,Michelle Pfeiffer|George Dzundza
+32,Twelve Monkeys (a.k.a. 12 Monkeys) (1995),Mystery|Sci-Fi,Terry Gilliam,Chris Marker|David Webb Peoples,Joseph Melito|Bruce Willis
+33,Wings of Courage (1995),Adventure|Romance,Jean-Jacques Annaud,Alain Godard|Jean-Jacques Annaud,Craig Sheffer|Tom Hulce
+34,Babe (1995),Children|Drama,Chris Noonan,Dick King-Smith|George Miller,Christine Cavanaugh|Miriam Margolyes
+35,Carrington (1995),Drama|Romance,Christopher Hampton,Christopher Hampton|Michael Holroyd,Emma Thompson|Jonathan Pryce
+36,Dead Man Walking (1995),Crime|Drama,Tim Robbins,Helen Prejean|Tim Robbins,Susan Sarandon|Sean Penn
