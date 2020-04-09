@@ -17,11 +17,17 @@
 	Movie RS
 	Book RS
 	News RS
+	User RS
 ---
 
 ##Dataset:
 
 1. https://grouplens.org/datasets/movielens/
+
+---
+
+##Evaluation：
+1. CTR(Click-Through-Rate)
 
 ---
 
@@ -36,6 +42,7 @@
 6.	Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
 7.	
 
+---
 
 ##future work
 1. mongodb
