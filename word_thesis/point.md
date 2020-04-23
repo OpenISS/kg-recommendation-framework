@@ -40,7 +40,10 @@
 4.	Owlready2 documentation https://pythonhosted.org/Owlready2/
 5.	Py2neo documentation https://py2neo.org/2.0/
 6.	Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
-7.	
+7.	auc&acc https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+8.  知乎：https://zhuanlan.zhihu.com/p/54325231(交替学习)
+9.  youtube： https://www.youtube.com/watch?v=BP0IZ1uyUDE （协同过滤）
+10. https://blog.csdn.net/dreamzuora/article/details/86543157（cf 优缺点）
 
 ---
 
