@@ -64,9 +64,36 @@ def load_kg_final(dataset):
     return entity_number, relation_number, kg
 
 
+def get_usr_info(dataset):
+    # convert m/f to string，M-0， F-1
+    def gender2num(gender):
+        return 1 if gender == 'F' else 0
+    user_info_path = data_path + dataset + '/users.dat'
+    with open(user_info_path, 'r') as f:
+        data = f.readlines()
+
+    use_info = {}
+    
+    max_usr_id = 0
+    for item in data:
+        item = item.strip().split("::")
+        usr_id = item[0]
+        use_info[usr_id] = {'usr_id': int(usr_id),
+                            'gender': gender2num(item[1]),
+                            'age': int(item[2]),
+                            'job': int(item[3])}
+        max_usr_id = max(max_usr_id, int(usr_id))
+    
+    return use_info
+
 def load_datas(args):
     user_number, item_number, train_data, eval_data, test_data = load_ratings_final(args.dataset)
 
     entity_number, relation_number, kg = load_kg_final(args.dataset)
 
-    return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg
+    user_infors = get_usr_info(args.dataset)
+    
+    return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg, user_infors
+    # user_infors = get_usr_info(args.dataset)
+    #
+    # return user_infors

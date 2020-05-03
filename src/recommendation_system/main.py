@@ -26,4 +26,4 @@ show_topk = False
 args = parser.parse_args()
 data = load_datas(args)
 # data = 0
-train(args, data, show_loss, show_topk)
+# train(args, data, show_loss, show_topk)
