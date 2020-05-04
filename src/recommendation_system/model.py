@@ -4,18 +4,21 @@ from sklearn.metrics import roc_auc_score
 from layers import Dense, CrossCompressUnit
 
 class MKR(object):
-    def __init__(self, args, n_users, n_items, n_entities, n_relations, restore_path=None):
-        self._parse_args(n_users, n_items, n_entities, n_relations, restore_path)
+    def __init__(self, args, n_users, n_items, n_entities, n_relations, n_user_gender, n_user_age, n_user_job, restore_path=None):
+        self._parse_args(n_users, n_items, n_entities, n_relations, n_user_gender, n_user_age, n_user_job, restore_path)
         self._build_inputs()
         self._build_model(args)
         self._build_loss(args)
         self._build_train(args)
 
-    def _parse_args(self, n_users, n_items, n_entities, n_relations, restore_path):
+    def _parse_args(self, n_users, n_items, n_entities, n_relations, n_user_gender, n_user_age, n_user_job, restore_path):
         self.n_user = n_users
         self.n_item = n_items
         self.n_entity = n_entities
         self.n_relation = n_relations
+        self.gender_max = n_user_gender
+        self.age_max = n_user_age
+        self.job_max = n_user_job
         self.restore_path = restore_path
 
         # for computing l2 loss
@@ -32,9 +35,39 @@ class MKR(object):
         self.dropout_param = tf.placeholder(tf.float32, None, 'dropout_param')
 
     def _build_model(self, args):
+        # self.get_user_feature_layer(args)
         self._build_low_layers(args)
         self._build_high_layers(args)
 
+    def get_user_embedding(self, args, uid, user_gender, user_age, user_job):
+        self.uid_embed_layer = tf.keras.layers.Embedding(self.n_users, args.dim, input_length=1,
+                                                         name='uid_embed_layer')(uid)
+        self.gender_embed_layer = tf.keras.layers.Embedding(self.gender_max, args.dim // 2, input_length=1,
+                                                            name='gender_embed_layer')(user_gender)
+        self.age_embed_layer = tf.keras.layers.Embedding(self.age_max, args.dim // 2, input_length=1,
+                                                         name='age_embed_layer')(
+            user_age)
+        self.job_embed_layer = tf.keras.layers.Embedding(self.job_max, args.dim // 2, input_length=1,
+                                                         name='job_embed_layer')(
+            user_job)
+        # return uid_embed_layer, gender_embed_layer, age_embed_layer, job_embed_layer
+
+    def get_user_feature_layer(self, args):
+        # 第一层全连接
+        uid_fc_layer = tf.keras.layers.Dense(args.dim, name="uid_fc_layer", activation='relu')(self.uid_embed_layer)
+        gender_fc_layer = tf.keras.layers.Dense(args.dim, name="gender_fc_layer", activation='relu')(
+            self.gender_embed_layer)
+        age_fc_layer = tf.keras.layers.Dense(args.dim, name="age_fc_layer", activation='relu')(self.age_embed_layer)
+        job_fc_layer = tf.keras.layers.Dense(args.dim, name="job_fc_layer", activation='relu')(self.job_embed_layer)
+
+        # 第二层全连接
+        user_combine_layer = tf.keras.layers.concatenate([uid_fc_layer, gender_fc_layer, age_fc_layer, job_fc_layer],
+                                                         2)  # (?, 1, 128)
+        user_combine_layer = tf.keras.layers.Dense(200, activation='tanh')(user_combine_layer)  # (?, 1, 200)
+
+        user_combine_layer_flat = tf.keras.layers.Reshape([200], name="user_combine_layer_flat")(user_combine_layer)
+        return user_combine_layer, user_combine_layer_flat
+    
     def _build_low_layers(self, args):
         if self.restore_path is None:
             self.user_emb_matrix = tf.get_variable('user_emb_matrix', [self.n_user, args.dim])

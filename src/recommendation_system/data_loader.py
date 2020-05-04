@@ -72,14 +72,32 @@ def load_user_infos(dataset):
     user_file = open(users_final_path + '.dat', encoding="UTF-8")
     
     user_set = set()
+    user_gender_set = set()
+    user_age_set = set()
+    use_job_set = set()
+    
     for row in user_file:
-        user_id = row.split("\t")[0]
+        user_id = row.split("::")[0]
+        user_gender = row.split("::")[1]
+        user_age = row.split("::")[2]
+        user_job = row.split("::")[3]
+        
         if user_id not in user_set:
             user_set.add(user_id)
+        if user_gender not in user_gender_set:
+            user_gender_set.add(user_gender)
+        if user_age not in user_age_set:
+            user_age_set.add(user_age)
+        if user_job not in use_job_set:
+            use_job_set.add(user_job)
+            
             
     user_numbers = len(user_set)
-    # print(user_numbers)
-    return user_numbers
+    user_gender_numbers = len(user_gender_set)
+    user_age_numbers = len(user_age_set)
+    user_job_numbers = len(use_job_set)
+
+    return user_numbers, user_gender_numbers, user_age_numbers, user_job_numbers
 
         
 def get_usr_info(dataset):
@@ -106,12 +124,12 @@ def get_usr_info(dataset):
 
 def load_datas(args):
     
-    user_number = load_user_infos(args.dataset)
+    user_number, user_gender_number, user_age_number, user_job_number = load_user_infos(args.dataset)
     
     item_number, train_data, eval_data, test_data = load_ratings_final(args.dataset)
 
     entity_number, relation_number, kg = load_kg_final(args.dataset)
-    #
-    
-    return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg
-    # return user_number
+
+
+    return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg, \
+           user_gender_number, user_age_number, user_job_number
