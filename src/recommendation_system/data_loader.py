@@ -8,22 +8,22 @@ def load_ratings_final(dataset):
     rating_final_path = data_path + dataset + '/ratings_final'
     rating_file = open(rating_final_path + '.txt', encoding="UTF-8")
 
-    user_set = set()
+    # user_set = set()
     item_set = set()
     for row in rating_file:
         user_id = row.split("\t")[0]
         item_id = row.split("\t")[1]
-        if user_id not in user_set:
-            user_set.add(user_id)
+        # if user_id not in user_set:
+        #     user_set.add(user_id)
         if item_id not in item_set:
             item_set.add(item_id)
 
-    user_number = len(user_set)
+    # user_number = len(user_set)
     item_number = len(item_set)
 
     train_data, eval_data, test_data = dataset_split(rating_final_path)
 
-    return user_number, item_number, train_data, eval_data, test_data
+    return item_number, train_data, eval_data, test_data
 
 def dataset_split(rating_final_path):
     # train:eval:test = 6:2:2
@@ -64,8 +64,26 @@ def load_kg_final(dataset):
     return entity_number, relation_number, kg
 
 
+def load_user_infos(dataset):
+    print('loading users.dat file ...')
+    
+    # reading users_info_final file
+    users_final_path = data_path + dataset + '/users'
+    user_file = open(users_final_path + '.dat', encoding="UTF-8")
+    
+    user_set = set()
+    for row in user_file:
+        user_id = row.split("\t")[0]
+        if user_id not in user_set:
+            user_set.add(user_id)
+            
+    user_numbers = len(user_set)
+    # print(user_numbers)
+    return user_numbers
+
+        
 def get_usr_info(dataset):
-    # convert m/f to string，M-0， F-1
+    # convert m/f to num，M-0， F-1
     def gender2num(gender):
         return 1 if gender == 'F' else 0
     user_info_path = data_path + dataset + '/users.dat'
@@ -87,13 +105,13 @@ def get_usr_info(dataset):
     return use_info
 
 def load_datas(args):
-    user_number, item_number, train_data, eval_data, test_data = load_ratings_final(args.dataset)
+    
+    user_number = load_user_infos(args.dataset)
+    
+    item_number, train_data, eval_data, test_data = load_ratings_final(args.dataset)
 
     entity_number, relation_number, kg = load_kg_final(args.dataset)
-
-    user_infors = get_usr_info(args.dataset)
-    
-    return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg, user_infors
-    # user_infors = get_usr_info(args.dataset)
     #
-    # return user_infors
+    
+    return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg
+    # return user_number
