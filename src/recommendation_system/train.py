@@ -22,7 +22,7 @@ def train(args, data, show_loss, show_topk):
     var_to_restore = ["user_emb_matrix", "item_emb_matrix", "relation_emb_matrix", "entity_emb_matrix"]
     user_number, item_number, entity_number, relation_number = data[0], data[1], data[2], data[3]
     train_data, eval_data, test_data, kg = data[4], data[5], data[6], data[7]
-    user_gender_number, user_age_number, user_job_number = data[8], data[9], data[10]
+    # user_gender_number, user_age_number, user_job_number = data[8], data[9], data[10]
     # print(user_gender_number, user_age_number, user_job_number)
 
     train_record = get_user_record(train_data, True)
@@ -48,8 +48,7 @@ def train(args, data, show_loss, show_topk):
     except:
         restore_path = None
 
-    model = MKR(args, user_number, item_number, entity_number, relation_number,
-                user_gender_number, user_age_number, user_job_number, restore_path)
+    model = MKR(args, user_number, item_number, entity_number, relation_number, restore_path)
     
     with tf.Session() as sess:
         if restore_path is None:
