@@ -52,7 +52,11 @@ A recommendation system is needed as long as there are users, but since users ha
 
 1. python3
 2. neo4j  "https://neo4j.com/download/?ref=try-neo4j-lp"
-
+---
+## Dataset explain
+item_index2entity_id.txt:  old_movie_id, new_movie_id
+kg_final.txt:   now_movie_id, relation, xxx
+ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rating
 
 ---
 
