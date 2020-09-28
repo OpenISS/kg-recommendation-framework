@@ -23,3 +23,14 @@
 13. sklearn.  '0.21.3'
 14. linecache.  '3.5'
 ---
+
+sample:
+crawler_example.py :  craw movie infomations 
+get_alltriples.py: get all triples 
+hello2222.rdf: RDF format sample
+kg_examples.py:  add triples to neo4j
+modify_node.py: modify node
+neo4j_multilingual.py:  test neo4j multilingual
+
+
+
