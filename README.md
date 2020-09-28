@@ -1,3 +1,53 @@
+-##Motivation:
+A recommendation system is needed as long as there are users, but since users have few ratings on items, there will be problems such as data sparsity. This problem can be solved by adding the knowledge graph as side information, but the existing solution does not include the construction of the knowledge graph. By adding the construction of the knowledge graph can help us better manage the data.
+----
+-
+-
+-##What application need it:
+-
+-	Movie RS
+-	Book RS
+-	News RS
+-	User RS
+----
+-
+-##Dataset:
+-
+-1. https://grouplens.org/datasets/movielens/
+-
+----
+-
+-##Evaluation：
+-1. CTR(Click-Through-Rate)
+-
+----
+-
+-
+-##reference:
+-
+-1.	Frame rate. https://en.wikipedia.org/wiki/Frame_rate. Accessed: 2019- 07-23.
+-2.	Software framework. https://en.wikipedia.org/wiki/Software_framework. Accessed: 2019-06-22.
+-3.	RDF OWL difference https://www.cambridgesemantics.com/blog/semantic-university/learn-owl-rdfs/rdfs-vs-owl/
+-4.	Owlready2 documentation https://pythonhosted.org/Owlready2/
+-5.	Py2neo documentation https://py2neo.org/2.0/
+-6.	Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
+-7.	auc&acc https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+-8.    知乎：https://zhuanlan.zhihu.com/p/54325231(交替学习)
+-9.    youtube： https://www.youtube.com/watch?v=BP0IZ1uyUDE （协同过滤）
+-10.  https://blog.csdn.net/dreamzuora/article/details/86543157（cf 优缺点）
+-
+----
+-
+-##future work
+-1. Java API wrapper
+-2. Support different machine learning backend
+-3. Support more storage methods and more input formats
+-4. More effective loss function
+-5. Full-platform support
+-6. Auto installation
+
+
+
 ## Software Requirements
 
 1. python3
@@ -47,6 +97,8 @@ How to run from Google Colab?
 upload all the file to colab, and click run.
 
 Tested MacOS version: Mac Mojava 10.14.6 
+
+
 
 
 
