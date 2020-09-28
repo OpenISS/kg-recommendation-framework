@@ -51,7 +51,12 @@ A recommendation system is needed as long as there are users, but since users ha
 ## Software Requirements
 
 1. python3
-2. neo4j  "https://neo4j.com/download/?ref=try-neo4j-lp"
+2. Neo4j  "https://neo4j.com/download/?ref=try-neo4j-lp"
+
+When using the knowledge graph, first open neo4j desktop, add graph, create a local graph, remember the graph name and password. change the username and password in your code.
+"""
+graph = Graph('http://localhost:7474', username='neo4j', password='0905')
+"""
 ---
 ## Dataset explain
 item_index2entity_id.txt:  old_movie_id, new_movie_id
