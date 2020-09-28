@@ -25,12 +25,28 @@
 ---
 
 sample:
-crawler_example.py :  craw movie infomations 
-get_alltriples.py: get all triples 
-hello2222.rdf: RDF format sample
-kg_examples.py:  add triples to neo4j
-modify_node.py: modify node
-neo4j_multilingual.py:  test neo4j multilingual
+crawler_example.py :  craw movie infomations  How to run: python3 crawler_example.py
+get_alltriples.py: get all triples      How to run: python3 get_alltriples.py: 
+hello2222.rdf: RDF format sample 
+kg_examples.py:  add triples to neo4j     How to run: kg_examples.py
+modify_node.py: modify node     How to run: python3 modify_node.py
+neo4j_multilingual.py:  test neo4j multilingual      How to run: python3 neo4j_multilingual.py
+---
+
+
+How to train a model:
+In src/recommendation_system/ folder.  and run main.py
+
+What IDE did we use to develop code? 
+Recommend to use pycharm (any version). Or use text editing software such as vim.
+
+How to run from command line:
+python3 xxxx.py
+
+How to run from Google Colab?
+upload all the file to colab, and click run.
+
+Tested MacOS version: Mac Mojava 10.14.6 
 
 
 
