@@ -22,8 +22,7 @@ def train(args, data, show_loss, show_topk):
     var_to_restore = ["user_emb_matrix", "item_emb_matrix", "relation_emb_matrix", "entity_emb_matrix"]
     user_number, item_number, entity_number, relation_number = data[0], data[1], data[2], data[3]
     train_data, eval_data, test_data, kg = data[4], data[5], data[6], data[7]
-    # user_gender_number, user_age_number, user_job_number = data[8], data[9], data[10]
-    # print(user_gender_number, user_age_number, user_job_number)
+    user_gender_number, user_age_number, user_job_number = data[8], data[9], data[10]
 
     train_record = get_user_record(train_data, True)
     test_record = get_user_record(test_data, False)
@@ -48,8 +47,8 @@ def train(args, data, show_loss, show_topk):
     except:
         restore_path = None
 
-    model = MKR(args, user_number, item_number, entity_number, relation_number, restore_path)
-    
+    model = MKR(args, user_number, item_number, entity_number, relation_number, user_gender_number, user_age_number, user_job_number, restore_path)
+
     with tf.Session() as sess:
         if restore_path is None:
             sess.run(tf.global_variables_initializer())
@@ -59,12 +58,25 @@ def train(args, data, show_loss, show_topk):
             item_emb = np.loadtxt('model/' + args.dataset + '/vocab/item_emb_matrix.txt', dtype=np.float32)
             entity_emb = np.loadtxt('model/' + args.dataset + '/vocab/entity_emb_matrix.txt', dtype=np.float32)
             relation_emb = np.loadtxt('model/' + args.dataset + '/vocab/relation_emb_matrix.txt', dtype=np.float32)
-    
+
+            gender_emb = np.loadtxt('model/' + args.dataset + '/vocab/user_genders_matrix.txt', dtype=np.float32)
+            age_emb = np.loadtxt('model/' + args.dataset + '/vocab/user_ages_matrix.txt', dtype=np.float32)
+            job_emb = np.loadtxt('model/' + args.dataset + '/vocab/user_jobs_matrix.txt', dtype=np.float32)
+            
+            # gender_emb = np.zeros([6040,1], dtype=np.float32)
+            # age_emb = np.zeros([6040,1], dtype=np.float32)
+            # job_emb = np.zeros([6040,1], dtype=np.float32)
+
             user_emb = np.vstack([user_emb, np.random.normal(size=[user_number - len(user_emb), args.dim])])
             item_emb = np.vstack([item_emb, np.random.normal(size=[item_number - len(item_emb), args.dim])])
             entity_emb = np.vstack([entity_emb, np.random.normal(size=[entity_number - len(entity_emb), args.dim])])
             relation_emb = np.vstack([relation_emb, np.random.normal(size=[relation_number - len(relation_emb), args.dim])])
-    
+
+            # gender_emb = np.vstack([gender_emb, np.random.normal(size=[user_gender_number - len(gender_emb),1])])
+            # age_emb = np.vstack([age_emb, np.random.normal(size=[user_age_number - len(age_emb),1])])
+            # job_emb = np.vstack([job_emb, np.random.normal(size=[user_job_number - len(job_emb),1])])
+            
+            
             var_to_restore = slim.get_variables_to_restore(exclude=var_to_restore)
             saver = tf.train.Saver(var_to_restore)
             saver.restore(sess,
@@ -72,7 +84,10 @@ def train(args, data, show_loss, show_topk):
             model.init_embeding(sess, {model.user_emb: user_emb,
                                        model.item_emb: item_emb,
                                        model.entity_emb: entity_emb,
-                                       model.relation_emb: relation_emb})
+                                       model.relation_emb: relation_emb,
+                                       model.gender_emb: gender_emb,
+                                       model.age_emb: age_emb,
+                                       model.job_emb: job_emb})
         
         for step in range(args.n_epochs):
             # RS training
@@ -129,6 +144,10 @@ def train(args, data, show_loss, show_topk):
         np.savetxt('model/' + args.dataset + '/vocab/entity_emb_matrix.txt', model.entity_emb_matrix.eval())
         np.savetxt('model/' + args.dataset + '/vocab/relation_emb_matrix.txt', model.relation_emb_matrix.eval())
 
+        np.savetxt('model/' + args.dataset + '/vocab/user_genders_matrix.txt', model.user_genders_matrix.eval())
+        np.savetxt('model/' + args.dataset + '/vocab/user_ages_matrix.txt', model.user_ages_matrix.eval())
+        np.savetxt('model/' + args.dataset + '/vocab/user_jobs_matrix.txt', model.user_jobs_matrix.eval())
+
         # Model save recovery save/restore method
         saver = tf.train.Saver()
         wts_name = 'model/' + args.dataset + '/restore' + "/{}/mkr.ckpt".format(output_folder)
@@ -140,6 +159,9 @@ def train(args, data, show_loss, show_topk):
         inputs = {"user_id": model.user_indices,
                   "item_id": model.item_indices,
                   "head_id": model.head_indices,
+                  "user_age":model.user_ages,
+                  "user_gender": model.user_genders,
+                  "user_job":model.user_jobs,
                   "is_dropout": model.dropout_param}
 
         outputs = {"ctr_predict": model.scores_normalized}
@@ -166,12 +188,14 @@ def train(args, data, show_loss, show_topk):
 
 def get_feed_dict_for_rs(model, data, start, end, dropout=0.5):
     feed_dict = {model.user_indices: data[start:end, 0],
-                 model.item_indices: data[start:end, 1],
-                 model.labels: data[start:end, 2],
-                 model.head_indices: data[start:end, 1],
+                 model.user_genders: data[start:end, 1],
+                 model.user_ages: data[start:end, 2],
+                 model.user_jobs: data[start:end, 3],
+                 model.item_indices: data[start:end, 4],
+                 model.labels: data[start:end, 5],
+                 model.head_indices: data[start:end, 4],
                  model.dropout_param: dropout
                  }
-
     return feed_dict
 
 def get_feed_dict_for_kge(model, kg, start, end, dropout=0.5):

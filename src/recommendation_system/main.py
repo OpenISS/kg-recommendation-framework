@@ -3,7 +3,7 @@ import numpy as np
 from data_loader import load_datas
 from train import train
 
-np.random.seed(555)
+np.random.seed(250)
 
 parser = argparse.ArgumentParser()
 

@@ -4,19 +4,23 @@ from sklearn.metrics import roc_auc_score
 from layers import Dense, CrossCompressUnit
 
 class MKR(object):
-    def __init__(self, args, n_users, n_items, n_entities, n_relations, restore_path=None):
-        self._parse_args(n_users, n_items, n_entities, n_relations, restore_path)
+    def __init__(self, args, n_users, n_items, n_entities, n_relations, n_user_gender, n_user_age, n_user_job, restore_path=None):
+        self._parse_args(n_users, n_items, n_entities, n_relations, n_user_gender, n_user_age, n_user_job, restore_path)
         self._build_inputs()
         self._build_model(args)
         self._build_loss(args)
         self._build_train(args)
 
-    def _parse_args(self, n_users, n_items, n_entities, n_relations, restore_path):
+    def _parse_args(self, n_users, n_items, n_entities, n_relations, n_user_gender, n_user_age, n_user_job, restore_path):
         self.n_user = n_users
         self.n_item = n_items
         self.n_entity = n_entities
         self.n_relation = n_relations
         self.restore_path = restore_path
+
+        self.n_user_gender = n_user_gender
+        self.n_user_age = n_user_age
+        self.n_user_job = n_user_job
 
         # for computing l2 loss
         self.vars_rs = []
@@ -31,40 +35,13 @@ class MKR(object):
         self.relation_indices = tf.placeholder(tf.int32, [None], 'relation_indices')
         self.dropout_param = tf.placeholder(tf.float32, None, 'dropout_param')
         
-        # self.user_gender = tf.placeholder(tf.int32, [None], name='user_gender')
-        # self.user_age = tf.placeholder(tf.int32, [None], name='user_age')
-        # self.user_job = tf.placeholder(tf.int32, [None], name='user_job')
+        self.user_genders = tf.placeholder(tf.int32, [None], name='user_gender')
+        self.user_ages = tf.placeholder(tf.int32, [None], name='user_age')
+        self.user_jobs = tf.placeholder(tf.int32, [None], name='user_job')
 
     def _build_model(self, args):
-        # self.get_user_embedding(args)
-        # self.get_user_feature_layer(args)
         self._build_low_layers(args)
         self._build_high_layers(args)
-
-    # def get_user_embedding(self, args):
-    #     self.uid_embed_layer = tf.keras.layers.Embedding(self.n_user, args.dim, input_length=1, name='uid_embed_layer')(self.user_indices)
-    #     self.gender_embed_layer = tf.keras.layers.Embedding(self.gender_max, args.dim // 2, input_length=1,
-    #                                                    name='gender_embed_layer')(self.user_gender)
-    #     self.age_embed_layer = tf.keras.layers.Embedding(self.age_max, args.dim // 2, input_length=1, name='age_embed_layer')(
-    #         self.user_age)
-    #     self.job_embed_layer = tf.keras.layers.Embedding(self.job_max, args.dim // 2, input_length=1, name='job_embed_layer')(
-    #         self.user_job)
-    #     # return uid_embed_layer, gender_embed_layer, age_embed_layer, job_embed_layer
-    #
-    # def get_user_feature_layer(self, args):
-    #     # 第一层全连接
-    #     self.uid_fc_layer = tf.layers.Dense(args.dim, name="uid_fc_layer", activation='relu')(self.uid_embed_layer)
-    #     self.gender_fc_layer = tf.layers.Dense(args.dim, name="gender_fc_layer", activation='relu')(
-    #         self.gender_embed_layer)
-    #     self.age_fc_layer = tf.layers.Dense(args.dim, name="age_fc_layer", activation='relu')(self.age_embed_layer)
-    #     self.job_fc_layer = tf.layers.Dense(args.dim, name="job_fc_layer", activation='relu')(self.job_embed_layer)
-    #
-    #     # 第二层全连接
-    #     self.user_combine_layer = tf.keras.layers.concatenate([self.uid_fc_layer, self.gender_fc_layer, self.age_fc_layer, self.job_fc_layer], -1)  # (?, 1, 128)
-    #     self.user_combine_layer = tf.keras.layers.Dense(args.dim, activation='tanh')(self.user_combine_layer)  # (?, 1, 200)
-    #
-    #     self.user_combine_layer_flat = tf.keras.layers.Reshape([args.dim], name="user_combine_layer_flat")(self.user_combine_layer)
-    #     # return user_combine_layer, user_combine_layer_flat
     
     def _build_low_layers(self, args):
         if self.restore_path is None:
@@ -72,21 +49,44 @@ class MKR(object):
             self.item_emb_matrix = tf.get_variable('item_emb_matrix', [self.n_item, args.dim])
             self.entity_emb_matrix = tf.get_variable('entity_emb_matrix', [self.n_entity, args.dim])
             self.relation_emb_matrix = tf.get_variable('relation_emb_matrix', [self.n_relation, args.dim])
+            
+            self.user_genders_matrix = tf.get_variable('user_genders_matrix', [self.n_user_gender, 8])
+            self.user_ages_matrix = tf.get_variable('user_ages_matrix', [self.n_user_age, 8])
+            self.user_jobs_matrix = tf.get_variable('user_jobs_matrix', [self.n_user_job, 8])
+
+            # self.user_genders_matrix = tf.get_variable('user_genders_matrix', [self.n_user, 1])
+            # self.user_ages_matrix = tf.get_variable('user_ages_matrix', [self.n_user, 1])
+            # self.user_jobs_matrix = tf.get_variable('user_jobs_matrix', [self.n_user, 1])
+
+
         else:
             self.user_emb = tf.placeholder(tf.float32, [None, args.dim], 'user_emb')
             self.item_emb = tf.placeholder(tf.float32, [None, args.dim], 'item_emb')
             self.entity_emb = tf.placeholder(tf.float32, [None, args.dim], 'entity_emb')
             self.relation_emb = tf.placeholder(tf.float32, [None, args.dim], 'relation_emb')
 
+            self.gender_emb = tf.placeholder(tf.float32, [None, 8], 'gender_emb')
+            self.age_emb = tf.placeholder(tf.float32, [None, 8], 'age_emb')
+            self.job_emb = tf.placeholder(tf.float32, [None, 8], 'job_emb')
+
             self.user_emb_matrix = tf.Variable(tf.truncated_normal([self.n_user, args.dim]), name='user_emb_matrix', trainable=True)
             self.item_emb_matrix = tf.Variable(tf.truncated_normal([self.n_item, args.dim]), name='item_emb_matrix', trainable=True)
             self.entity_emb_matrix = tf.Variable(tf.truncated_normal([self.n_entity, args.dim]), name='entity_emb_matrix', trainable=True)
             self.relation_emb_matrix = tf.Variable(tf.truncated_normal([self.n_relation, args.dim]), name='relation_emb_matrix', trainable=True)
 
+            self.user_genders_matrix = tf.Variable(tf.truncated_normal([self.n_user_gender, 8]), name='user_genders_matrix', trainable=True)
+            self.user_ages_matrix = tf.Variable(tf.truncated_normal([self.n_user_age, 8]), name='user_ages_matrix', trainable=True)
+            self.user_jobs_matrix = tf.Variable(tf.truncated_normal([self.n_user_job, 8]), name='user_jobs_matrix', trainable=True)
+
             self.user_emb_init = self.user_emb_matrix.assign(self.user_emb)
             self.item_emb_init = self.item_emb_matrix.assign(self.item_emb)
             self.entity_emb_init = self.entity_emb_matrix.assign(self.entity_emb)
             self.relation_emb_init = self.relation_emb_matrix.assign(self.relation_emb)
+
+            self.gender_emb_init = tf.assign(self.user_genders_matrix,self.gender_emb)
+            self.age_emb_init = self.user_ages_matrix.assign(self.age_emb)
+            self.job_emb_init = self.user_jobs_matrix.assign(self.job_emb)
+            
 
         # [batch_size, dim]
         self.user_embeddings = tf.nn.embedding_lookup(self.user_emb_matrix, self.user_indices)
@@ -94,13 +94,21 @@ class MKR(object):
         self.head_embeddings = tf.nn.embedding_lookup(self.entity_emb_matrix, self.head_indices)
         self.relation_embeddings = tf.nn.embedding_lookup(self.relation_emb_matrix, self.relation_indices)
         self.tail_embeddings = tf.nn.embedding_lookup(self.entity_emb_matrix, self.tail_indices)
-
+        # self.user_embeddings = tf.concat([self.user_embeddings, self.features], axis=0)
+        
+        self.user_genders_embeddings = tf.nn.embedding_lookup(self.user_genders_matrix, self.user_genders)
+        self.user_ages_embeddings = tf.nn.embedding_lookup(self.user_ages_matrix, self.user_ages)
+        self.user_jobs_embeddings = tf.nn.embedding_lookup(self.user_jobs_matrix, self.user_jobs)
+        
+        self.features = tf.concat([self.user_genders_embeddings, self.user_ages_embeddings, self.user_jobs_embeddings], axis=1)
+        
+        self.user_embeddings = tf.concat([self.user_embeddings,self.features],axis=1)
+        
         for _ in range(args.L):
-            user_mlp = Dense(input_dim=args.dim, output_dim=args.dim, dropout=self.dropout_param)
+            user_mlp = Dense(input_dim=32, output_dim=args.dim, dropout=self.dropout_param)
             tail_mlp = Dense(input_dim=args.dim, output_dim=args.dim, dropout=self.dropout_param)
             cc_unit = CrossCompressUnit(args.dim)
             self.user_embeddings = user_mlp(self.user_embeddings)
-            # self.user_embeddings = self.user_combine_layer_flat
             self.item_embeddings, self.head_embeddings = cc_unit([self.item_embeddings, self.head_embeddings])
             self.tail_embeddings = tail_mlp(self.tail_embeddings)
 
@@ -127,6 +135,8 @@ class MKR(object):
             rs_pred_mlp = Dense(input_dim=args.dim * 2, output_dim=1, dropout=self.dropout_param)
             # [batch_size]
             self.scores = tf.squeeze(rs_pred_mlp(self.user_item_concat))
+            print(self.scores)
+            print(self.scores.shape)
             self.vars_rs.extend(rs_pred_mlp.vars)
         self.scores_normalized = tf.nn.sigmoid(self.scores)
 
@@ -176,8 +186,6 @@ class MKR(object):
         return sess.run([self.optimizer_kge, self.loss_kge], feed_dict)
 
     def eval(self, sess, feed_dict):
-        # print("Zzzz")
-        # print(feed_dict)
         labels, scores = sess.run([self.labels, self.scores_normalized], feed_dict)
         auc = roc_auc_score(y_true=labels, y_score=scores)
         predictions = [1 if i >= 0.5 else 0 for i in scores]
@@ -188,4 +196,5 @@ class MKR(object):
         return sess.run([self.item_indices, self.scores_normalized], feed_dict)
 
     def init_embeding(self, sess, feed_dict):
-        sess.run([self.user_emb_init, self.item_emb_init, self.entity_emb_init, self.relation_emb_init], feed_dict)
+        sess.run([self.user_emb_init, self.item_emb_init, self.entity_emb_init, self.relation_emb_init,
+                  self.gender_emb_init, self.age_emb_init, self.job_emb_init], feed_dict)

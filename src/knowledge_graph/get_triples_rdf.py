@@ -1,40 +1,11 @@
-# from owlready2 import *
 import rdflib
 
-# def add_datapproperty_value(individual_name,dataproperty_name,value):
-#     path = "/Users/yuhaomao/master/sample/hello2222.rdf"
-#     onto = get_ontology(path).load()
-#     with onto:
-#         print(type(value))
-#         if type(value) == str:
-#             exec('onto.{}.{} = ["{}"]'.format(individual_name,dataproperty_name,value))
-#         if type(value) == int:
-#             exec('onto.{}.{} = [{}]'.format(individual_name,dataproperty_name,value))
-#     onto.save("hello2222.rdf")
-#
-# # add_datapproperty_value("aaa","has_for_synonym",123)
-#
-# def check_individual():
-#     """
-#     检查individual是否存在
-#     """
-#     path = "/Users/yuhaomao/master/sample/hello2222.rdf"
-#     onto = get_ontology(path).load()
-#     with onto:
-#         print(onto.my_drug)
-
-
-
-def get_objectproperty_triple(objectproperty_name,triples):
+def get_objectproperty_triple(objectproperty_name,triples,path):
     """
-    检查给定的objectproperty的所有三元组
+    check all the triples given objectproperty
     """
     g = rdflib.Graph()
-    g.parse("/Users/yuhaomao/master/sample/hello2222.rdf", format="xml")
-    # q = """
-    #     SELECT ?subject ?object
-	#     WHERE { ?subject :has_whatever ?object}
-    #     """
+    g.parse(path, format="xml")
     q = "SELECT ?subject ?object WHERE { ?subject :" + objectproperty_name + " ?object}"
     x = g.query(q)
     t = list(x)
@@ -44,12 +15,13 @@ def get_objectproperty_triple(objectproperty_name,triples):
         result = [head,objectproperty_name,tail]
         triples.append(result)
 
-def check_objecrproperty(tmp_list):
+def check_objecrproperty(tmp_list,path):
     """
-    查询所有的objectproperty
+    check all the objectproperty
+    path: rdf file path
     """
     g = rdflib.Graph()
-    g.parse("/Users/yuhaomao/master/sample/hello2222.rdf", format="xml")
+    g.parse(path, format="xml")
     q = """
             SELECT ?x
     	    WHERE {
@@ -58,19 +30,14 @@ def check_objecrproperty(tmp_list):
     x = g.query(q)
     t = list(x)
     for i in t:
-        # print(i)
         a = (str(i).split("#")[1])[:-4]
         tmp_list.append(a)
+    print(tmp_list)
 
-def get_all_triples():
+def get_all_triples(path):
     tmp_list = []
     triples = []
-    check_objecrproperty(tmp_list)
+    check_objecrproperty(tmp_list,path)
     for i in tmp_list:
-        get_objectproperty_triple(i,triples)
-    # for i in triples:
-    #     print(i)
+        get_objectproperty_triple(i,triples,path)
     print(triples)
-
-
-get_all_triples()

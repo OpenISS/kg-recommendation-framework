@@ -12,7 +12,7 @@ def load_ratings_final(dataset):
     item_set = set()
     for row in rating_file:
         user_id = row.split("\t")[0]
-        item_id = row.split("\t")[1]
+        item_id = row.split("\t")[4]
         # if user_id not in user_set:
         #     user_set.add(user_id)
         if item_id not in item_set:
@@ -130,6 +130,11 @@ def load_datas(args):
 
     entity_number, relation_number, kg = load_kg_final(args.dataset)
 
-
+    print("n_user")
+    print(user_number)
+    print(item_number)
+    print(entity_number)
+    print(relation_number)
+    print(user_number, user_gender_number, user_age_number, user_job_number)
     return user_number, item_number, entity_number, relation_number, train_data, eval_data, test_data, kg, \
            user_gender_number, user_age_number, user_job_number
