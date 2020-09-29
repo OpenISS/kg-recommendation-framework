@@ -184,6 +184,15 @@ class storage_mode():
         else:
             return True
 
+def delete_node(name,username,password):
+    graph = Graph('http://localhost:7474', username=username, password=password)
+    storage_m = storage_mode()
+    if storage_m.find_node_name(name) == False:
+        return
+    else:
+        string_qurey = "MATCH (a{name:\"" + name + "\"}) DETACH DELETE a;"
+        result = graph.run(string_qurey)
+
 def neo4j_test(parameter):
     if parameter == "no":
         print("all")
@@ -224,15 +233,15 @@ def neo4j_test(parameter):
         # storage_m.movie_director(director_path)
         
     print("neo4j test finish")
-if __name__ == '__main__':
-    storage_m = storage_mode()
-    begin = datetime.datetime.now()
-    print("begin time:", begin)
-    print(storage_m.find_node_name("Tom Hanks"))
-    end = datetime.datetime.now()
-    print("end time:", end)
-    a = ((end - begin).microseconds)  # 29522
-    print(a)
+# if __name__ == '__main__':
+#     storage_m = storage_mode()
+#     begin = datetime.datetime.now()
+#     print("begin time:", begin)
+#     print(storage_m.find_node_name("Tom Hanks"))
+#     end = datetime.datetime.now()
+#     print("end time:", end)
+#     a = ((end - begin).microseconds)  # 29522
+#     print(a)
 #     movies_file_path = "/Users/yuhaomao/Downloads/ml-latest/movies.csv"
 #     storage_m.movies_csv(movies_file_path)
 #

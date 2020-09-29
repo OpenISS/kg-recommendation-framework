@@ -5,7 +5,7 @@ import csv
 # # iri= "http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
 # onto = get_ontology(path).load()
 
-path = "/Users/yuhaomao/master/sample/hello2222.rdf"
+path = "../samples/hello2222.rdf"
 # iri= "http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
 onto = get_ontology(path).load()
 
@@ -131,6 +131,11 @@ def movie_csv(file_path):
             #     genres_node = NodeMatcher(graph).match(name=movie_genres).first()
             #     genre_call_node = Relationship(movie_node, 'genre', genres_node)
             #     graph.create(genre_call_node)
+
+def delete_node(path,name):
+    onto = get_ontology(path).load()
+    exec('destroy_entity(onto.{0})'.format(name))
+    onto.save(path)
 
 def RDFtest():
     print("owl test")
