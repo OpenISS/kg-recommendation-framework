@@ -46,7 +46,6 @@ def add_triples(triples,username,password):
             graph.create(head_relation_tail)
 
 
-
 # triples = [['drug111', 'has_xxxxxxxx', 'idontknow']]
 #
 # add_triples(triples)
