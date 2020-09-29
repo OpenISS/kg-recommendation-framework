@@ -41,12 +41,12 @@ A recommendation system is needed as long as there are users, but since users ha
 ----
 
 ## Future work
--1. Java API wrapper
--2. Support different machine learning backend
--3. Support more storage methods and more input formats
--4. More effective loss function
--5. Full-platform support
--6. Auto installation
+1. Java API wrapper
+2. Support different machine learning backend
+3. Support more storage methods and more input formats
+4. More effective loss function
+5. Full-platform support
+6. Auto installation
 
 
 ## Software Requirements
@@ -54,24 +54,24 @@ A recommendation system is needed as long as there are users, but since users ha
 1. python3
 2. Neo4j  "https://neo4j.com/download/?ref=try-neo4j-lp"
 
-When using the knowledge graph, first open neo4j desktop, add graph, create a local graph, remember the graph name and password. change the username and password in your code.
+When using the knowledge graph, first open Neo4j desktop, add graph, create a local graph, remember the graph name and password. change the username and password in your code.
 
 ```!#python
-graph = Graph('http://localhost:7474', username='neo4j', password='0905')
+graph = Graph('http://localhost:7474', username='username', password='password')
 ```
 
 ---
 
 ## Dataset explaination
 
-item_index2entity_id.txt:  old_movie_id, new_movie_id
-kg_final.txt:   now_movie_id, relation, xxx
-ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rating
+1. item_index2entity_id.txt:  old_movie_id, new_movie_id
+2. kg_final.txt:   now_movie_id, relation, xxx
+3. ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rating
 
 ---
 
 ## Library Requirements
-
+pip3 install xxxxxxx == version
 1. rdflib.  Version: 4.2.2 
 2. urllib.request.   '3.7'
 3. networkx.  '2.4'
@@ -89,16 +89,9 @@ ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rat
 ---
 
 ## samples:
-
-crawler_example.py :  craw movie infomations  How to run: python3 crawler_example.py
-get_alltriples.py: get all triples      How to run: python3 get_alltriples.py: 
-hello2222.rdf: RDF format sample 
-kg_examples.py:  add triples to neo4j     How to run: kg_examples.py
-modify_node.py: modify node     How to run: python3 modify_node.py
-neo4j_multilingual.py:  test neo4j multilingual      How to run: python3 neo4j_multilingual.py
-
+[Framework usage examples](https://bitbucket.org/iss-v2-proj/video-recommender-system/src/master/samples/README.md)
 ---
-
+Questions:
 
 How to train a model:
 In src/recommendation_system/ folder.  and run main.py
