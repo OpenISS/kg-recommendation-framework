@@ -3,6 +3,17 @@ sys.path.append('../src/knowledge_graph')
 import get_triples_neo4j as n
 import get_triples_rdf as r
 
+
+"""
+RDF:
+    input: rdf file path
+    output: triples list
+
+Neo4j:
+    input: list,username,password
+    output: triples list
+"""
+
 # path = "../samples/hello2222.rdf"
 # r.get_all_triples(path)
 
