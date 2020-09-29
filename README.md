@@ -86,7 +86,27 @@ ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rat
 12. tensorflow.  '1.14.0'
 13. sklearn.  '0.21.3'
 14. linecache.  '3.5'
+
 ---
+
+### Installing on MacOS ###
+
+- do we need ``brew``?
+- ...
+
+### Installing on EL7 ###
+
+1. Clone the repo
+2. Install dependencies
+```
+yum install python3 gcc python3-devel
+pip3 install requests
+pip3 install py2neo
+pip3 install dask
+pip3 install numpy
+pip3 install pandas
+python3 -m pip install "dask[dataframe]" --upgrade
+```
 
 ## samples:
 
