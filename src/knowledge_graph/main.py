@@ -4,25 +4,23 @@ import pandas as pd
 import datetime
 
 graph = Graph('http://localhost:7474', username='neo4j', password='0905')
-# graph.delete_all()
-# reg = "[^0-9A-Za-z\u4e00-\u9fa5]"  ####### remove symbol rule
 
 class storage_mode():
     
-    def movies_csv(self,file_path):
+    def movies_file(self,file_path,movieid_dict):
         print(file_path)
-        with open(file_path) as f:
-            data_list = [i for i in csv.reader(f)]  # csv.reader 读取到的数据是list类型
-            movie_list = data_list[1:]
-            print(movie_list)
-        for movie in movie_list:
-            movie_id = movie[0]
-            movie_name = movie[1]
-            movie_genres_str = movie[2]
+        f = open(file_path, "r", encoding="utf-8")
+        lines = f.readlines()
+        for movie in lines:
+            # print(movie)
+            movie = movie.replace("\n","")
+            movie_infos = movie.split("::")
+            movie_id = movie_infos[0]
+            movie_name = movie_infos[1]
+            movie_genres_str = movie_infos[2]
             movie_genres_list = movie_genres_str.split("|")
-            print(movie_id)
-            # print(movie_name)
-            # print(movie_genres_list)
+            print(movie_name)
+            movieid_dict[movie_id] = movie_name
             movie_node = Node(movie_id,name=movie_name, labels="movie")
             graph.create(movie_node)
             for movie_genres in movie_genres_list:
@@ -37,80 +35,56 @@ class storage_mode():
                     graph.create(genre_call_node)
     
     
-    def ratings_csv(self,file_path):
+    def ratings_csv(self,file_path,movieid_dict):
         print(file_path)
-    
-        data = pd.read_table(file_path,chunksize=1000,header=None,sep=",")
-        for chunk in data:
-            print(chunk)
-            for userid,movieid,rating in zip(chunk[0],chunk[1],chunk[2]):
-                print(userid,movieid,rating)
-                if self.find_node_name(str("user_" + str(userid))) == False:
-                    user_node = Node(str("user_" + str(userid)),name=str("user_" + str(userid)),labels = "user")
-                    graph.create(user_node)
-                else:
-                    user_node = NodeMatcher(graph).match(name=str("user_" + str(userid))).first()
-                user_movie_node = NodeMatcher(graph).match(str(movieid)).first()
-                user_call_movie = Relationship(user_node, str(rating), user_movie_node)
-                graph.create(user_call_movie)
-                
-            print("111111111")
+        f = open(file_path, "r", encoding="utf-8")
+        lines = f.readlines()
+        for ratings in lines:
+            ratings_list = ratings.split("::")
+            print(ratings_list)
+            userid = ratings_list[0]
+            movieid = ratings_list[1]
+            rating = ratings_list[2]
+            movie_name = movieid_dict[movieid]
+            print(movie_name)
+            if self.find_node_name(str("user_" + str(userid))) == False:
+                user_node = Node(str("user_" + str(userid)),name=str("user_" + str(userid)),labels = "user")
+                graph.create(user_node)
+            else:
+                user_node = NodeMatcher(graph).match(name=str("user_" + str(userid))).first()
+            user_movie_node = NodeMatcher(graph).match(name = movie_name).first()
+            print("ssssssss")
+            print(user_movie_node)
+            user_call_movie = Relationship(user_node, str(rating), user_movie_node)
+            graph.create(user_call_movie)
     
            
-    def movie_director(self,director_path):
-        print(director_path)
+    def movie_director(self,file_path):
+        print(file_path)
         
-        with open(director_path) as f:
-            data_list = [i for i in csv.reader(f)]  # csv.reader 读取到的数据是list类型
-            movie_list = data_list[1:]
-    
-            for movie in movie_list:
-                movie_id = movie[0]
-                movie_director = movie[3]
-                movie_writer = movie[4]
-                movie_star = movie[5]
-                print(movie_id)
-                movie_director_split = movie_director.split("|")
-                for split_director in movie_director_split:
-                    if self.find_node_name(split_director) == False:
-                        director_node = Node(split_director, name=split_director,labels = "person")
-                        graph.create(director_node)
-                        movie_node = NodeMatcher(graph).match(str(movie_id)).first()
-                        director_call_node = Relationship(movie_node, 'director', director_node)
-                        graph.create(director_call_node)
-                    else:
-                        director_node = NodeMatcher(graph).match(name=split_director).first()
-                        movie_node = NodeMatcher(graph).match(str(movie_id)).first()
-                        director_call_node = Relationship(movie_node, 'director', director_node)
-                        graph.create(director_call_node)
-    
-                movie_writer_split = movie_writer.split("|")
-                for split_writer in movie_writer_split:
-                    if self.find_node_name(split_writer) == False:
-                        writer_node = Node(split_writer, name=split_writer, labels="person")
-                        graph.create(writer_node)
-                        movie_node = NodeMatcher(graph).match(str(movie_id)).first()
-                        writer_call_node = Relationship(movie_node, 'writer', writer_node)
-                        graph.create(writer_call_node)
-                    else:
-                        writer_node = NodeMatcher(graph).match(name=split_writer).first()
-                        movie_node = NodeMatcher(graph).match(str(movie_id)).first()
-                        writer_call_node = Relationship(movie_node, 'writer', writer_node)
-                        graph.create(writer_call_node)
-    
-                movie_star_split = movie_star.split("|")
-                for split_star in movie_star_split:
-                    if self.find_node_name(split_star) == False:
-                        star_node = Node(split_star, name=split_star, labels="person")
-                        graph.create(star_node)
-                        movie_node = NodeMatcher(graph).match(str(movie_id)).first()
-                        star_call_node = Relationship(movie_node, 'star', star_node)
-                        graph.create(star_call_node)
-                    else:
-                        star_node = NodeMatcher(graph).match(name=split_star).first()
-                        movie_node = NodeMatcher(graph).match(str(movie_id)).first()
-                        star_call_node = Relationship(movie_node, 'star', star_node)
-                        graph.create(star_call_node)
+        f = open(file_path, "r", encoding="utf-8")
+        lines = f.readlines()
+        for triples in lines:
+            print(triples)
+            triples = triples.replace("\n","")
+            triples_list = triples.split("\t")
+            print(triples_list)
+            movie_name = triples_list[0]
+            relation = triples_list[1]
+            person_name = triples_list[2]
+            print(movie_name)
+            print(relation)
+            print(person_name)
+            movie_node = NodeMatcher(graph).match(name=movie_name).first()
+            if self.find_node_name(person_name) == False:
+                person_node = Node(person_name, name=person_name, labels="person")
+                graph.create(person_node)
+            else:
+                person_node = NodeMatcher(graph).match(name=person_name).first()
+            print(movie_node)
+            print(person_node)
+            person_call_node = Relationship(movie_node, relation, person_node)
+            graph.create(person_call_node)
 
     def user_info(self, director_path):
         print(director_path)
@@ -233,35 +207,14 @@ def neo4j_test(parameter):
         # storage_m.movie_director(director_path)
         
     print("neo4j test finish")
-# if __name__ == '__main__':
-#     storage_m = storage_mode()
-#     begin = datetime.datetime.now()
-#     print("begin time:", begin)
-#     print(storage_m.find_node_name("Tom Hanks"))
-#     end = datetime.datetime.now()
-#     print("end time:", end)
-#     a = ((end - begin).microseconds)  # 29522
-#     print(a)
-#     movies_file_path = "/Users/yuhaomao/Downloads/ml-latest/movies.csv"
-#     storage_m.movies_csv(movies_file_path)
-#
-#     ratings_file_path = "../dataset/ratings.csv"
-#     # ratings_csv(ratings_file_path)
-#
-#     director_path = "../dataset/movies_director.csv"
-    # storage_m.movie_director(director_path)
-    
-    
-    ############################################################################# test
-    # print(find_node_name("Fantasy"))
-    # movie_node = NodeMatcher(graph).match(name = "Sudden Death (1995)").first()
-    # movie_node1 = NodeMatcher(graph).match(name="Tom and Huck (1995)").first()
-    # genre_call_node = Relationship(movie_node1, 'genre', movie_node)
-    # graph.create(genre_call_node)
-    
-    # id = 307
-    # movie_node = NodeMatcher(graph).match(str(id)).first()
-    # print(movie_node)
-# storage_m = storage_mode()
-# user_info_path = "/Users/yuhaomao/Downloads/ml-1m/users.dat"
-# storage_m.user_info(user_info_path)
+if __name__ == '__main__':
+    storage_m = storage_mode()
+    movies_file_path = "../../data/movie/movies.txt"
+    movieid_dict = {}
+    storage_m.movies_file(movies_file_path,movieid_dict)
+
+    ratings_file_path = "../../data/movie/ratings.txt"
+    storage_m.ratings_csv(ratings_file_path,movieid_dict)
+
+    kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
+    storage_m.movie_director(kg_sideinforamtion_path)

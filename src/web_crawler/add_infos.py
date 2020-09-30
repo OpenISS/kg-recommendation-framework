@@ -36,15 +36,18 @@ class web_crawler:
             
         return self.directors, self.writers, self.stars
 
-def imdbid(dict_tmp):
-    f = open("/Users/yuhaomao/Downloads/ml-latest/movies.csv", "r")
+def imdbid(dict_tmp,path):
+    f = open(path, "r",encoding="utf-8")
     lines = f.readlines()
     for row in lines:
-        print(row)
-        count = row.split(",")[0]
-        print(count)
-        movie_name = row.split(",")[1]
-        imdb_id = "tt" + str(row.split(",")[-1])[:-1].zfill(7)
+        # print(row)
+        old_movie_id = row.split("::")[0]
+        # print(old_movie_id)
+        movie_name = row.split("::")[1]
+        # print(movie_name)
+        imdb_id = search_id(movie_name)
+        # print(imdb_id)
+        imdb_id = "tt" + imdb_id
         print(imdb_id)
         dict_tmp[movie_name] = imdb_id
         url = "https://www.imdb.com/title/" + str(imdb_id)
@@ -53,44 +56,34 @@ def imdbid(dict_tmp):
         print(web_c.crawler())
         result = ""
         for director in web_c.directors:
-            result += str(count) + "\t" + "directors" + "\t" + str(director) + "\n"
+            result += str(movie_name) + "\t" + "directors" + "\t" + str(director) + "\n"
             print(result)
 
         for writer in web_c.writers:
-            result += str(count) + "\t" + "writers" + "\t" + str(writer) + "\n"
+            result += str(movie_name) + "\t" + "writers" + "\t" + str(writer) + "\n"
             print(result)
 
         for star in web_c.stars:
-            result += str(count) + "\t" + "stars" + "\t" + str(star) + "\n"
+            result += str(movie_name) + "\t" + "stars" + "\t" + str(star) + "\n"
             print(result)
-        f = open("kg_additional.txt", "a")
+        f = open("../../data/movie/kg_additional.txt", "a")
         f.write(result)
         f.close()
-        print(web_c.directors)
-    return dict_tmp
 
-def read_movie(dict_tmp):
-    f = open("../data/movie/movie_10m/movies.dat", "r")
-    lines = f.readlines()
-    for row in lines:
-        movie_name = row.split("::")[1]
-        print(movie_name)
-        print(dict_tmp[movie_name])
+    return dict_tmp
         
 def search_id(name):
     ia = IMDb()
     search = ia.search_movie(name)
-    print(search)
-    for i in range(len(search)):
-        id = search[i].movieID
-        print(search[i]['title'] + " : " + id)
+    # print(search)
+    if search == []:
+        return None
+    else:
+        return search[0].movieID
+    # for i in range(len(search)):
+    #     id = search[i].movieID
+    #     print(search[i]['title'] + " : " + id)
 
 if __name__ == '__main__':
     dict_tmp = {}
-    # search_id("The Grief of Others (2015)")
-    # imdbid(dict_tmp)
-    # read_movie(dict_tmp)
-    # url="https://www.imdb.com/title/tt0114709/"
-    # rules = "nm"
-    # web_c = web_crawler(url,rules)
-    # print(web_c.crawler())
+    imdbid(dict_tmp,"../../data/movie/movies.txt")

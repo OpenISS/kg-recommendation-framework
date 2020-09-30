@@ -1,201 +1,69 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#"
-     xml:base="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"/>
-    
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
+         xmlns="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"/>
+
+<owl:ObjectProperty rdf:about="#has_for_ingredient">
+  <rdfs:domain rdf:resource="#Drug"/>
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="#Ingredient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_whatever">
+  <rdfs:domain rdf:resource="#Drug"/>
+  <rdfs:range rdf:resource="#Ingredient"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_whatever_whatever">
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#new_relation">
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#poster_link">
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#has_for_synonym">
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Drug">
+  <rdfs:subClassOf rdf:resource="#Ingredient"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ingredient">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#xxx">
+  <rdfs:subClassOf rdf:resource="#Drug"/>
+</owl:Class>
+
+<Ingredient rdf:about="#acetaminophen">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Ingredient>
+
+<owl:Thing rdf:about="#idontknow">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</owl:Thing>
+
+<owl:Thing rdf:about="#test1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_for_ingredient rdf:resource="#acetaminophen"/>
+</owl:Thing>
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_for_ingredient -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_for_ingredient">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ingredient"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_whatever -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_whatever">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ingredient"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_whatever_whatever -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_whatever_whatever">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#new_relation -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#new_relation">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster_link -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster_link">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_for_synonym -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_for_synonym">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ingredient"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ingredient -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ingredient">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#xxx -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#xxx">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug"/>
-    </owl:Class>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#acetaminophen -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#acetaminophen">
-        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ingredient"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#drug111 -->
-
-    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#drug111">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <has_whatever_whatever rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#idontknow"/>
-    </owl:Thing>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#durg1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#durg1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug"/>
-        <has_whatever rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#acetaminophen"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#idontknow -->
-
-    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#idontknow">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    </owl:Thing>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#my_drug -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#my_drug">
-        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug"/>
-        <has_for_ingredient rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#acetaminophen"/>
-        <has_for_synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">int</has_for_synonym>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#new_drug -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#new_drug">
-        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Drug"/>
-        <has_for_ingredient rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#acetaminophen"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#test1 -->
-
-    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#test1">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <has_for_ingredient rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#acetaminophen"/>
-    </owl:Thing>
 </rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
-
