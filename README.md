@@ -105,10 +105,13 @@ pip3 install linecache
 2. Install dependencies
 
 yum install python3 gcc python3-devel
+
 pip3 install requests
+
 pip3 install py2neo
-pip3 install dask
+
 pip3 install numpy
+
 pip3 install pandas
 ```
 
