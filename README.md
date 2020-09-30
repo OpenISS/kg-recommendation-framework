@@ -34,9 +34,9 @@ A recommendation system is needed as long as there are users, but since users ha
 5.	Py2neo documentation https://py2neo.org/2.0/
 6.	Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
 7.	auc&acc https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
-8.    知乎：https://zhuanlan.zhihu.com/p/54325231(交替学习)
-9.    youtube： https://www.youtube.com/watch?v=BP0IZ1uyUDE （协同过滤）
-10.  https://blog.csdn.net/dreamzuora/article/details/86543157（cf 优缺点）
+8.   	https://zhuanlan.zhihu.com/p/54325231
+9.     youtube： https://www.youtube.com/watch?v=BP0IZ1uyUDE
+10.   https://blog.csdn.net/dreamzuora/article/details/86543157
 
 ----
 
@@ -54,24 +54,16 @@ A recommendation system is needed as long as there are users, but since users ha
 1. python3
 2. Neo4j  "https://neo4j.com/download/?ref=try-neo4j-lp"
 
-When using the knowledge graph, first open Neo4j desktop, add graph, create a local graph, remember the graph name and password. change the username and password in your code.
-
-```!#python
-graph = Graph('http://localhost:7474', username='username', password='password')
-```
-
 ---
 
 ## Dataset explaination
 
-1. item_index2entity_id.txt:  old_movie_id, new_movie_id
-2. kg_final.txt:   now_movie_id, relation, xxx
-3. ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rating
+1. kg_final.txt:   now_movie_id, relation, xxx
+2. ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rating
 
 ---
 
 ## Library Requirements
-pip3 install xxxxxxx == version
 1. rdflib.  Version: 4.2.2 
 2. urllib.request.   '3.7'
 3. networkx.  '2.4'
@@ -90,28 +82,41 @@ pip3 install xxxxxxx == version
 ---
 
 ### Installing on MacOS ###
+brew install python3
+pip3 install rdflib
+pip3 install urllib.request
+pip3 install networkx
+pip3 install matplotlib
+pip3 install requests
+pip3 install bs4
+pip3 install IMDbPy
+pip3 install py2neo
+pip3 install owlready2
+pip3 install pandas
+pip3 install numpy
+pip3 install tensorflow
+pip3 install sklearn
+pip3 install linecache
+...
 
-- do we need ``brew``?
-- ...
-
-### Installing on EL7 ###
+## Installing on EL7 
 
 1. Clone the repo
 2. Install dependencies
-```
+
 yum install python3 gcc python3-devel
 pip3 install requests
 pip3 install py2neo
 pip3 install dask
 pip3 install numpy
 pip3 install pandas
-python3 -m pip install "dask[dataframe]" --upgrade
 ```
 
 ## samples:
-[Framework usage examples](https://bitbucket.org/iss-v2-proj/video-recommender-system/src/master/samples/README.md)
+
+1. [Framework usage examples](https://bitbucket.org/iss-v2-proj/video-recommender-system/src/master/samples/README.md)
 ---
-Questions:
+## Questions:
 
 How to train a model:
 In src/recommendation_system/ folder.  and run main.py
@@ -126,3 +131,13 @@ How to run from Google Colab?
 upload all the file to colab, and click run.
 
 Tested MacOS version: Mac Mojava 10.14.6 
+
+## How to start:
+
+1. cd ../web_crawler  python3 add_infors.py  to get kg_additional file. It includes diretor information, writer information and stars information.
+
+2. Start Neo4j desktop then cd ../knowledge_graph  run python3 main.py. Create all triples in Neo4j.
+
+3. cd ../recommendation system/data_process  run triples2txt.py ratings2txt.py kg_final.py to get ratings_final.txt kg_final.txt
+
+4. cd ../recommendation system  run main.py
