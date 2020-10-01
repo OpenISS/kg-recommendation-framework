@@ -82,6 +82,9 @@ A recommendation system is needed as long as there are users, but since users ha
 ---
 
 ### Installing on MacOS ###
+
+```
+#!bash
 brew install python3
 pip3 install rdflib
 pip3 install urllib.request
@@ -97,28 +100,28 @@ pip3 install numpy
 pip3 install tensorflow
 pip3 install sklearn
 pip3 install linecache
-...
+```
 
 ## Installing on EL7 
 
 1. Clone the repo
 2. Install dependencies
 
+```
+#!bash
 yum install python3 gcc python3-devel
-
 pip3 install requests
-
 pip3 install py2neo
-
 pip3 install numpy
-
 pip3 install pandas
+...
+```
 
-
-## samples:
+## Samples:
 
 1. [Framework usage examples](https://bitbucket.org/iss-v2-proj/video-recommender-system/src/master/samples/README.md)
 ---
+
 ## Questions:
 
 How to train a model:
