@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from imdb import IMDb
+import download_poster as dp
 
 
 class web_crawler:
@@ -40,17 +41,14 @@ def imdbid(dict_tmp,path):
     f = open(path, "r",encoding="utf-8")
     lines = f.readlines()
     for row in lines:
-        # print(row)
         old_movie_id = row.split("::")[0]
-        # print(old_movie_id)
         movie_name = row.split("::")[1]
-        # print(movie_name)
         imdb_id = search_id(movie_name)
-        # print(imdb_id)
         imdb_id = "tt" + imdb_id
         print(imdb_id)
         dict_tmp[movie_name] = imdb_id
         url = "https://www.imdb.com/title/" + str(imdb_id)
+        # dp.get_poster(movie_name, url)
         rules = "nm"
         web_c = web_crawler(url, rules)
         print(web_c.crawler())
