@@ -86,17 +86,18 @@ class storage_mode():
             person_call_node = Relationship(movie_node, relation, person_node)
             graph.create(person_call_node)
 
-    def user_info(self, director_path):
-        print(director_path)
+    def user_info(self, user_info_path):
+        print(user_info_path)
 
-        f_txt = open(director_path, encoding="UTF-8")
+        f_txt = open(user_info_path, encoding="UTF-8")
         lines = f_txt.readlines()
         
         for data in lines:
+            data = data.replace("\n", "")
             data = data.split("::")
             print(data)
 
-            user_id = data[0]
+            user_id = "user_" + str(data[0])
             user_gender = data[1]
             user_age = data[2]
             user_job = data[3]
@@ -123,10 +124,37 @@ class storage_mode():
                 user_job_node = NodeMatcher(graph).match(name=user_job).first()
             userid_relation_usergender = Relationship(user_id_node, 'gender', user_gender_node)
             graph.create(userid_relation_usergender)
-            userid_relation_userage = Relationship(user_id_node, 'gender', user_age_node)
+            userid_relation_userage = Relationship(user_id_node, 'age', user_age_node)
             graph.create(userid_relation_userage)
-            userid_relation_userjob = Relationship(user_id_node, 'gender', user_job_node)
+            userid_relation_userjob = Relationship(user_id_node, 'job', user_job_node)
             graph.create(userid_relation_userjob)
+    
+    
+    def poster_info(self,path):
+        print(path)
+    
+        f_txt = open(path, encoding="UTF-8")
+        lines = f_txt.readlines()
+    
+        for data in lines:
+            data = data.replace("\n", "")
+            data = data.split("\t")
+            movie_name = data[0]
+            movie_poster = data[1]
+
+            if self.find_node_name(movie_name) == False:
+                movie_node = Node(movie_name, name=movie_name, labels="movie")
+                graph.create(movie_node)
+            else:
+                movie_node = NodeMatcher(graph).match(name=movie_name).first()
+                
+            if self.find_node_name(movie_poster) == False:
+                poster_node = Node(movie_poster, name=movie_poster, labels="poster")
+                graph.create(poster_node)
+            else:
+                poster_node = NodeMatcher(graph).match(name=movie_poster).first()
+            movie_call_poster = Relationship(movie_node, "poster", poster_node)
+            graph.create(movie_call_poster)
     
     
     def find_node_id(self,id):
@@ -167,54 +195,41 @@ def delete_node(name,username,password):
         string_qurey = "MATCH (a{name:\"" + name + "\"}) DETACH DELETE a;"
         result = graph.run(string_qurey)
 
-def neo4j_test(parameter):
-    if parameter == "no":
-        print("all")
-        # storage_m = storage_mode()
-        # movies_file_path = "/Users/yuhaomao/Downloads/ml-latest/movies.csv"
-        # storage_m.movies_csv(movies_file_path)
-        #
-        # ratings_file_path = "../dataset/ratings.csv"
-        # storage_m.ratings_csv(ratings_file_path)
-        #
-        # director_path = "../dataset/movies_director.csv"
-        # storage_m.movie_director(director_path)
-        #
-        # user_info_path = "/Users/yuhaomao/Downloads/ml-1m/users.dat"
-        # storage_m.user_info(user_info_path)
-        
-    if parameter == "director":
-        print("delet director")
-        # storage_m = storage_mode()
-        # movies_file_path = "/Users/yuhaomao/Downloads/ml-latest/movies.csv"
-        # storage_m.movies_csv(movies_file_path)
-        #
-        # ratings_file_path = "../dataset/ratings.csv"
-        # storage_m.ratings_csv(ratings_file_path)
-        # user_info_path = "/Users/yuhaomao/Downloads/ml-1m/users.dat"
-        # storage_m.user_info(user_info_path)
-        
-    if parameter == "user":
-        print("user")
-        # storage_m = storage_mode()
-        # movies_file_path = "/Users/yuhaomao/Downloads/ml-latest/movies.csv"
-        # storage_m.movies_csv(movies_file_path)
-        #
-        # ratings_file_path = "../dataset/ratings.csv"
-        # storage_m.ratings_csv(ratings_file_path)
-        #
-        # director_path = "../dataset/movies_director.csv"
-        # storage_m.movie_director(director_path)
-        
-    print("neo4j test finish")
-if __name__ == '__main__':
-    storage_m = storage_mode()
-    movies_file_path = "../../data/movie/movies.txt"
-    movieid_dict = {}
-    storage_m.movies_file(movies_file_path,movieid_dict)
-
-    ratings_file_path = "../../data/movie/ratings.txt"
-    storage_m.ratings_csv(ratings_file_path,movieid_dict)
-
-    kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
-    storage_m.movie_director(kg_sideinforamtion_path)
+def neo4j_storage(parameter):
+    result = parameter.split(",")
+    result.sort()
+    # storage_m = storage_mode()
+    # movies_file_path = "../../data/movie/movies.txt"
+    # movieid_dict = {}
+    # storage_m.movies_file(movies_file_path, movieid_dict)
+    #
+    # ratings_file_path = "../../data/movie/ratings.txt"
+    # storage_m.ratings_csv(ratings_file_path, movieid_dict)
+    
+    for i in result:
+        if i == "all":
+            print("all")
+            # kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
+            # storage_m.movie_director(kg_sideinforamtion_path)
+            #
+            # users_info_path = "../../data/movie/users.dat"
+            # storage_m.user_info(users_info_path)
+            #
+            # poster_path = "../../data/movie/kg_poster.txt"
+            # storage_m.poster_info(poster_path)
+            break
+            
+        elif i == "user_info":
+            print("user")
+            # users_info_path = "../../data/movie/users.dat"
+            # storage_m.user_info(users_info_path)
+            
+        elif i == "poster_info":
+            print("poster")
+            # poster_path = "../../data/movie/kg_poster.txt"
+            # storage_m.poster_info(poster_path)
+            
+        elif i == "movie_info":
+            print("movie_info")
+            # kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
+            # storage_m.movie_director(kg_sideinforamtion_path)

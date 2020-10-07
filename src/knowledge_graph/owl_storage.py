@@ -5,7 +5,7 @@ import csv
 # # iri= "http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
 # onto = get_ontology(path).load()
 
-path = "../samples/hello2222.rdf"
+path = "../../samples/hello2222.rdf"
 # iri= "http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
 onto = get_ontology(path).load()
 
@@ -137,5 +137,5 @@ def delete_node(path,name):
     exec('destroy_entity(onto.{0})'.format(name))
     onto.save(path)
 
-def RDFtest():
+def RDFstorage():
     print("owl test")
