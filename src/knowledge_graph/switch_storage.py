@@ -13,7 +13,8 @@ if __name__ == '__main__':
     if args.mode == "neo4j":
         neo4j_storage(args.dataset)
     elif args.mode == "rdf":
-        RDFstorage()
+        path = "../../samples/hello2222.rdf"
+        RDFstorage(args.dataset,path)
     else:
         print("ERROR")
 

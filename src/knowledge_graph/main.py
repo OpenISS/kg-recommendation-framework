@@ -35,7 +35,7 @@ class storage_mode():
                     graph.create(genre_call_node)
     
     
-    def ratings_csv(self,file_path,movieid_dict):
+    def ratings_file(self,file_path,movieid_dict):
         print(file_path)
         f = open(file_path, "r", encoding="utf-8")
         lines = f.readlines()
@@ -204,7 +204,7 @@ def neo4j_storage(parameter):
     # storage_m.movies_file(movies_file_path, movieid_dict)
     #
     # ratings_file_path = "../../data/movie/ratings.txt"
-    # storage_m.ratings_csv(ratings_file_path, movieid_dict)
+    # storage_m.ratings_file(ratings_file_path, movieid_dict)
     
     for i in result:
         if i == "all":

@@ -9,7 +9,7 @@ def add_individual(class_name, individual_name,path):
         # print(class_name)
         exec('onto.{class_name}("{individual_name}")'.format(class_name=class_name, individual_name=individual_name))
         # exec('("{individual_name}")'.format(class_name=class_name, individual_name=individual_name))
-    onto.save(path)
+        onto.save(path)
 
 def add_objectproperty(domain_name,objectproprety,range_name,path):
     """
@@ -55,3 +55,4 @@ def add_triples(triples,path):
                 if tail_exist == None:
                     add_individual("owl:Thing", tail,path)
                 add_triple(head, relation, tail,path)
+            onto.save(path)
