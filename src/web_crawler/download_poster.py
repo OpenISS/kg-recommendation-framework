@@ -12,7 +12,7 @@ def get_poster(movie_name,movie_url):
             image_url = ''.join(image_url.partition('_')[0]) + extension
             filename =  str(movie_name) + extension
             with urllib.request.urlopen(image_url) as response:
-                result = str(movie_name) + "\t" + str(base64.b64encode(response.read()))
+                result = str(movie_name) + "\t" + str(base64.b64encode(response.read())) + "\n"
                 f = open("../../data/movie/kg_poster.txt", "a")
                 f.write(result)
                 f.close()
