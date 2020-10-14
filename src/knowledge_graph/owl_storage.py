@@ -57,6 +57,20 @@ def add_data_value(individual_name,dataproperty_name,value,path):
 # add_data_value("my_drug","has_for_synonym","int")
 # onto.my_drug.has_for_synonym.append("int")
 
+
+# find node through id(Not implemented yet)
+def find_node_id(node_id):
+    print("ERROR")
+
+
+# find node through name
+def find_node_name(name):
+    node_exist = exec('onto.{}'.format(name))
+    if node_exist != None:
+        return True
+    else:
+        return False
+
 def add_triple(domain_name,objectproprety,range_name,path):
     """
     add a triple to path file
@@ -246,6 +260,22 @@ def delete_node(path,name):
     onto = get_ontology(path).load()
     exec('destroy_entity(onto.{0})'.format(name))
     onto.save(path)
+
+
+def create_node(class_name, individual_name, path):
+    onto = get_ontology(path).load()
+    with onto:
+        # print(class_name)
+        exec(
+            'onto.{class_name}("{individual_name}")'.format(class_name="Thing", individual_name=individual_name))
+    onto.save(path)
+
+
+def create_relation(domain_name, objectproprety, range_name, path):
+    onto = get_ontology(path).load()
+    with onto:
+        exec('onto.{0}.{1} = [onto.{2}]'.format(domain_name, objectproprety, range_name))
+        onto.save(path)
 
 def RDFstorage(parameter,path):
     

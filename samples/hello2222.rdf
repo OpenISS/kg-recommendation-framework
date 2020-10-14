@@ -17,7 +17,9 @@
 
 <owl:ObjectProperty rdf:about="#has_whatever">
   <rdfs:domain rdf:resource="#Drug"/>
+  <rdfs:domain rdf:resource="#idontknow"/>
   <rdfs:range rdf:resource="#Ingredient"/>
+  <rdfs:range rdf:resource="#test1"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#has_whatever_whatever">
@@ -52,18 +54,19 @@
   <rdfs:subClassOf rdf:resource="#Drug"/>
 </owl:Class>
 
-<Ingredient rdf:about="#acetaminophen">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</Ingredient>
-
 <owl:Thing rdf:about="#idontknow">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_whatever rdf:resource="#test1"/>
 </owl:Thing>
 
 <owl:Thing rdf:about="#test1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <has_for_ingredient rdf:resource="#acetaminophen"/>
 </owl:Thing>
+
+<Ingredient rdf:about="#acetaminophen">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Ingredient>
 
 
 </rdf:RDF>
