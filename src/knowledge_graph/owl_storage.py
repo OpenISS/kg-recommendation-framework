@@ -277,7 +277,7 @@ def create_relation(domain_name, objectproprety, range_name, path):
         exec('onto.{0}.{1} = [onto.{2}]'.format(domain_name, objectproprety, range_name))
         onto.save(path)
 
-def RDFstorage(parameter,path):
+def Storage_rdf(parameter,path):
     
     # movies_file_path = "../../data/movie/movies.txt"
     # movieid_dict = {}

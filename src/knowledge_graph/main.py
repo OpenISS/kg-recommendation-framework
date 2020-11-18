@@ -195,7 +195,7 @@ def delete_node(name,username,password):
         string_qurey = "MATCH (a{name:\"" + name + "\"}) DETACH DELETE a;"
         result = graph.run(string_qurey)
 
-def neo4j_storage(parameter):
+def Storage_neo4j(parameter):
     result = parameter.split(",")
     result.sort()
     # storage_m = storage_mode()
