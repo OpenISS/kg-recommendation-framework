@@ -32,12 +32,33 @@ def check_objecrproperty(tmp_list,path):
     for i in t:
         a = (str(i).split("#")[1])[:-4]
         tmp_list.append(a)
-    print(tmp_list)
+    # print(tmp_list)
 
-def get_all_triples(path):
+def get_all_triples(path,result):
     tmp_list = []
-    triples = []
     check_objecrproperty(tmp_list,path)
     for i in tmp_list:
-        get_objectproperty_triple(i,triples,path)
-    print(triples)
+        get_objectproperty_triple(i,result,path)
+    # print(result)
+
+result = []
+get_all_triples("../../samples/hello2222.rdf",result)
+for i in result:
+    print(i)
+# print(result)
+
+# ['Robert_Downey_Jr.', 'director', 'Русский_ковчег']
+# ['Jon_Favreau', 'director', 'Iron_Man_(2008)']
+# ['star_A', 'star', 'Ahí_va_el_diablo']
+# ['Wie_küsst_man_einen_Millionär', 'poster_link', 'imdb_link']
+
+
+
+# neo4j
+# [' Anthony Russo.', 'director', 'Avengers:_Endgame_(2019)']
+# ['Robert_Downey_Jr.', 'star', 'Iron_Man_(2008)']
+# ['Robert_Downey_Jr.', 'writer', 'Русский_ковчег']
+# ['star_A', 'star', 'Ahí_va_el_diablo']
+
+
+

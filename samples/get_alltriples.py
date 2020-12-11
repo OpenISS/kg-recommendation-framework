@@ -13,12 +13,13 @@ Neo4j:
     input: list,username,password
     output: triples list
 """
-
-# path = "../samples/hello2222.rdf"
-# r.get_all_triples(path)
-
 result = []
-username = "neo4j"
-password = "0905"
-n.get_all_triples(result,username,password)
+path = "../samples/hello2222.rdf"
+r.get_all_triples(path,result)
 print(result)
+
+# result = []
+# username = "neo4j"
+# password = "0905"
+# n.get_all_triples(result,username,password)
+# print(result)

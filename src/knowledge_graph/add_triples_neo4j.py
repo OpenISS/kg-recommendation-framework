@@ -46,8 +46,13 @@ def add_triples(triples,username,password):
             graph.create(head_relation_tail)
 
 
-# triples = [['drug111', 'has_xxxxxxxx', 'idontknow']]
-#
-# add_triples(triples)
+triples = [['Robert_Downey_Jr.', 'director', 'Русский_ковчег']]
+
+# ['Wie_küsst_man_einen_Millionär', 'poster_link', 'imdb_link']
+# ['Robert_Downey_Jr.', 'director', 'Pусский_ковче']
+# ['Jon_Favreau', 'director', 'Iron_Man_(2008)']
+# ['star_A', 'star', 'Ahí_va_el_diablo']
+
+add_triples(triples,"neo4j","0905")
 
 

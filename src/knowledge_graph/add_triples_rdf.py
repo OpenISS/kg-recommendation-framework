@@ -37,9 +37,14 @@ def add_triples(triples,path):
     onto = get_ontology(path).load()
     
     for i in triples:
+        print("sss")
+        print(i)
         head = i[0]
         relation = i[1]
         tail = i[2]
+        print(head)
+        print(relation)
+        print(tail)
         
         with onto:
             head_exist = exec('onto.{}'.format(head))
@@ -56,3 +61,17 @@ def add_triples(triples,path):
                     add_individual("owl:Thing", tail,path)
                 add_triple(head, relation, tail,path)
             onto.save(path)
+
+
+
+a = [['Anthony_Russo', 'director', 'Avengers_Endgame_2019'],
+['Robert_Downey_Jr', 'star', 'Iron_Man_2008'],
+['Robert_Downey_Jr', 'writer', 'Русский_ковчег'],
+['star_A', 'star', 'Ahí_va_el_diablo']]
+add_triples(a,"../../samples/hello2222.rdf")
+
+
+# [' Anthony Russo.', 'director', 'Avengers:_Endgame_(2019)']
+# ['Robert_Downey_Jr.', 'star', 'Iron_Man_(2008)']
+# ['Robert_Downey_Jr.', 'writer', 'Русский_ковчег']
+# ['star_A', 'star', 'Ahí_va_el_diablo']

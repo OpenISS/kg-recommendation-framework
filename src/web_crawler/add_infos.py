@@ -4,7 +4,7 @@ from imdb import IMDb
 import download_poster as dp
 
 
-class web_crawler:
+class web_extractor:
     def __init__(self,url,rules):
         self.url = url
         self.rules = rules
@@ -13,7 +13,7 @@ class web_crawler:
         self.stars = []
         self.count = 1
         
-    def crawler(self):
+    def extractor(self):
         try:
             r = requests.get(self.url)
             r.raise_for_status()
@@ -37,7 +37,7 @@ class web_crawler:
             
         return self.directors, self.writers, self.stars
 
-def imdbid(dict_tmp,path):
+def imdb_extractor(dict_tmp,path):
     f = open(path, "r",encoding="utf-8")
     lines = f.readlines()
     for row in lines:
@@ -50,8 +50,8 @@ def imdbid(dict_tmp,path):
         url = "https://www.imdb.com/title/" + str(imdb_id)
         # dp.get_poster(movie_name, url)
         rules = "nm"
-        web_c = web_crawler(url, rules)
-        print(web_c.crawler())
+        web_c = web_extractor(url, rules)
+        print(web_c.extractor())
         result = ""
         for director in web_c.directors:
             result += str(movie_name) + "\t" + "directors" + "\t" + str(director) + "\n"
@@ -84,4 +84,4 @@ def search_id(name):
 
 if __name__ == '__main__':
     dict_tmp = {}
-    imdbid(dict_tmp,"../../data/movie/movies.txt")
+    imdb_extractor(dict_tmp,"../../data/movie/movies.txt")
