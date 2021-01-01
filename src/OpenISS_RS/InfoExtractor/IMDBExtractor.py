@@ -4,7 +4,7 @@ from imdb import IMDb
 import download_poster as dp
 
 
-class web_extractor:
+class IMDB_extractor:
     def __init__(self,url,rules):
         self.url = url
         self.rules = rules
@@ -50,18 +50,18 @@ def imdb_extractor(dict_tmp,path):
         url = "https://www.imdb.com/title/" + str(imdb_id)
         # dp.get_poster(movie_name, url)
         rules = "nm"
-        web_c = web_extractor(url, rules)
-        print(web_c.extractor())
+        IMDB_e = IMDB_extractor(url, rules)
+        print(IMDB_e.extractor())
         result = ""
-        for director in web_c.directors:
+        for director in IMDB_e.directors:
             result += str(movie_name) + "\t" + "directors" + "\t" + str(director) + "\n"
             print(result)
 
-        for writer in web_c.writers:
+        for writer in IMDB_e.writers:
             result += str(movie_name) + "\t" + "writers" + "\t" + str(writer) + "\n"
             print(result)
 
-        for star in web_c.stars:
+        for star in IMDB_e.stars:
             result += str(movie_name) + "\t" + "stars" + "\t" + str(star) + "\n"
             print(result)
         f = open("../../data/movie/kg_additional.txt", "a")
@@ -78,9 +78,6 @@ def search_id(name):
         return None
     else:
         return search[0].movieID
-    # for i in range(len(search)):
-    #     id = search[i].movieID
-    #     print(search[i]['title'] + " : " + id)
 
 if __name__ == '__main__':
     dict_tmp = {}
