@@ -78,12 +78,22 @@ class kg_viewer:
         for i in individual_list:
             total_class_dict = self.query_class_type("a",i,rdf_about,total_class_dict)
         
+def query_individual(a,path):
+    g = rdflib.Graph()
+    g.parse("../../samples/hello2222.rdf", format="xml")
+    SELECT * WHERE
+    {
+    ?s ?p ?o
+    }
+    q = "SELECT *  WHERE { <" + rdf_about + "#" + individual_name + "> ?p ?o .}"
+    x = g.query(q)
+    t = list(x)
 
 if __name__ == "__main__":
     a = {}
     G = nx.DiGraph()
-    rdf_about = "/Users/yuhaomao/Desktop/AES_CN_knowledge-graph/json2rdf/hello2222.rdf"
-    # individual_list = query_individual(a,rdf_about)
+    rdf_about = "../../samples/hello2222.rdf"
+    individual_list = query_individual(a,rdf_about)
     individual_list = ['individual_id10', 'individual_id29', 'individual_id40', 'individual_id92', 'individual_id43', 'individual_id93', 'individual_id84', 'individual_id23', 'individual_id69', 'individual_id31', 'individual_id17', 'individual_id48', 'individual_id24', 'individual_id85', 'individual_id21', 'individual_id41', 'individual_id58', 'individual_id82', 'individual_id12', 'individual_id88', 'individual_id55', 'individual_id9', 'individual_id51', 'individual_id3', 'individual_id94', 'individual_id14', 'individual_id60', 'individual_id32', 'individual_id59', 'individual_id16', 'individual_id53', 'individual_id70', 'individual_id38', 'individual_id67', 'individual_id63', 'individual_id89', 'individual_id33', 'individual_id6', 'individual_id95', 'individual_id11', 'individual_id77', 'individual_id19', 'individual_id28', 'individual_id83', 'individual_id86', 'individual_id96', 'individual_id30', 'individual_id78', 'individual_id0', 'individual_id20', 'individual_id42', 'individual_id71', 'individual_id5', 'individual_id56', 'individual_id75', 'individual_id74', 'individual_id39', 'individual_id73', 'individual_id7', 'individual_id4', 'individual_id64', 'individual_id26', 'individual_id22', 'individual_id65', 'individual_id47', 'individual_id81', 'individual_id27', 'individual_id66', 'individual_id2', 'individual_id68', 'individual_id1', 'individual_id62', 'individual_id76', 'individual_id52', 'individual_id72', 'individual_id15', 'individual_id46', 'individual_id8', 'individual_id18', 'individual_id34', 'individual_id36', 'individual_id87', 'individual_id13', 'individual_id35', 'individual_id57', 'individual_id44', 'individual_id50', 'individual_id80', 'individual_id45', 'individual_id37', 'individual_id79', 'individual_id90', 'individual_id61', 'individual_id54', 'individual_id49', 'individual_id25', 'individual_id91']
     total_class_dict = {}
     kg_v = kg_viewer(individual_list,total_class_dict)
