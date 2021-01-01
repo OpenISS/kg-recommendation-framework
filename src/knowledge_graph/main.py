@@ -234,6 +234,8 @@ def Storage_neo4j(parameter):
             # kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
             # storage_m.movie_director(kg_sideinforamtion_path)
 
+
+from owl_storage import Storage_rdf
 class StorageManager():
 
     def getManager(self,mode):
@@ -246,9 +248,8 @@ class StorageManager():
             self.current_mode = "rdf"
         
     def load(self,dataset):
-        if dataset == "all":
-            if self.current_mode == "Neo4j":
-                Storage_neo4j("all")
-            elif self.current_mode == "rdf":
-                print("call rdf all")
+        if self.current_mode == "Neo4j":
+            Storage_neo4j(dataset)
+        elif self.current_mode == "rdf":
+            Storage_rdf(dataset,"path")
         
