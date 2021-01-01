@@ -233,3 +233,22 @@ def Storage_neo4j(parameter):
             print("movie_info")
             # kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
             # storage_m.movie_director(kg_sideinforamtion_path)
+
+class StorageManager():
+
+    def getManager(self,mode):
+        self.current_mode = ""
+        if mode == "Neo4j":
+            print("Initial Neo4j! ")
+            self.current_mode = "Neo4j"
+        elif mode == "rdf":
+            print("Initial RDF! ")
+            self.current_mode = "rdf"
+        
+    def load(self,dataset):
+        if dataset == "all":
+            if self.current_mode == "Neo4j":
+                Storage_neo4j("all")
+            elif self.current_mode == "rdf":
+                print("call rdf all")
+        

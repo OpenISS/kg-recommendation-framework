@@ -53,6 +53,8 @@ def get_user_infos(user_id):
     user_gender = [infos[1]]
     user_age = [infos[2]]
     user_job = [infos[3]]
+    print(user_gender)
+    print(type(user_gender))
     return user_gender,user_age,user_job
     
 if __name__ == '__main__':

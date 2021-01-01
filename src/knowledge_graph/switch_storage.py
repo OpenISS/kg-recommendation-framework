@@ -16,7 +16,7 @@
 #         Storage_rdf(args.dataset,path)
 #     else:
 #         print("ERROR" )
-import main as StorageManager
+from main import StorageManager
 import argparse
 
 
@@ -28,8 +28,10 @@ args = parser.parse_args()
 if __name__ == '__main__':
     storage_m = StorageManager()
     if args.mode == "neo4j":
-        StorageManager.Neo4jManager(args.dataset)
+        storage_m.getManager("Neo4j")
+        storage_m.load(args.dataset)
     elif args.mode == "rdf":
-        StorageManager.RDFManager(args.dataset)
+        storage_m.getManager("rdf")
+        storage_m.load(args.dataset)
     else:
         print("ERROR")
