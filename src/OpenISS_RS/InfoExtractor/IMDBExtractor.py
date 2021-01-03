@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from imdb import IMDb
-import download_poster as dp
-
+import urllib.request
+import base64
 
 class IMDB_extractor:
     def __init__(self,url,rules):
@@ -48,7 +48,7 @@ def imdb_extractor(dict_tmp,path):
         print(imdb_id)
         dict_tmp[movie_name] = imdb_id
         url = "https://www.imdb.com/title/" + str(imdb_id)
-        # dp.get_poster(movie_name, url)
+        get_poster(movie_name, url)
         rules = "nm"
         IMDB_e = IMDB_extractor(url, rules)
         print(IMDB_e.extractor())
@@ -64,11 +64,30 @@ def imdb_extractor(dict_tmp,path):
         for star in IMDB_e.stars:
             result += str(movie_name) + "\t" + "stars" + "\t" + str(star) + "\n"
             print(result)
-        f = open("../../data/movie/kg_additional.txt", "a")
+        f = open("../../../data/movie/kg_additional.txt", "a")
         f.write(result)
         f.close()
 
     return dict_tmp
+
+
+
+def get_poster(movie_name,movie_url):
+    with urllib.request.urlopen(movie_url) as response:
+        html = response.read()
+        soup = BeautifulSoup(html, 'html.parser')
+        try:
+            image_url = soup.find('div', class_='poster').a.img['src']
+            extension = '.txt'
+            image_url = ''.join(image_url.partition('_')[0]) + extension
+            filename =  str(movie_name) + extension
+            with urllib.request.urlopen(image_url) as response:
+                result = str(movie_name) + "\t" + str(base64.b64encode(response.read())) + "\n"
+                f = open("../../../data/movie/kg_poster.txt", "a")
+                f.write(result)
+                f.close()
+        except AttributeError:
+            pass
         
 def search_id(name):
     ia = IMDb()
@@ -81,4 +100,4 @@ def search_id(name):
 
 if __name__ == '__main__':
     dict_tmp = {}
-    imdb_extractor(dict_tmp,"../../data/movie/movies.txt")
+    imdb_extractor(dict_tmp,"../../../data/movie/movies.txt")

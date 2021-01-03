@@ -1,124 +1,256 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-         xmlns:owl="http://www.w3.org/2002/07/owl#"
-         xml:base="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
-         xmlns="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#">
-
-<owl:Ontology rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"/>
-
-<owl:ObjectProperty rdf:about="#director">
-  <rdfs:domain rdf:resource="#person"/>
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="#movie"/>
-  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:ObjectProperty>
-
-<owl:ObjectProperty rdf:about="#poster_link">
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:ObjectProperty>
-
-<owl:ObjectProperty rdf:about="#star">
-  <rdfs:domain rdf:resource="#person"/>
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="#movie"/>
-  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:ObjectProperty>
-
-<owl:ObjectProperty rdf:about="#writer">
-  <rdfs:domain rdf:resource="#person"/>
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="#movie"/>
-  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:ObjectProperty>
-
-<owl:DatatypeProperty rdf:about="#has_for_synonym">
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-<owl:Class rdf:about="#person"/>
-
-<owl:Class rdf:about="#movie"/>
-
-<owl:Class rdf:about="#poster"/>
-
-<movie rdf:about="#Ahí_va_el_diablo">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<person rdf:about="#Jon_Favreau">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <director rdf:resource="#Iron_Man_(2008)"/>
-</person>
-
-<movie rdf:about="#Iron_Man_(2008)">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<movie rdf:about="#Русский_ковчег">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<person rdf:about="#Robert_Downey_Jr">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <director rdf:resource="#Русский_ковчег"/>
-  <star rdf:resource="#Iron_Man_2008"/>
-  <writer rdf:resource="#Русский_ковчег"/>
-</person>
-
-<movie rdf:about="#Wie_küsst_man_einen_Millionär">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <poster_link rdf:resource="#imdb_link"/>
-</movie>
-
-<poster rdf:about="#imdb_link">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</poster>
-
-<person rdf:about="#director_A">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</person>
-
-<person rdf:about="#star_A">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <star rdf:resource="#Ahí_va_el_diablo"/>
-</person>
-
-<movie rdf:about="#かぐや姫の物語">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<movie rdf:about="#疯狂赛车">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<movie rdf:about="#부산행">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<movie rdf:about="#La_Règle_du_Jeu_(1939)">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</movie>
-
-<owl:Thing rdf:about="#Anthony_Russo">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <director rdf:resource="#Avengers_Endgame_2019"/>
-</owl:Thing>
-
-<owl:Thing rdf:about="#Avengers_Endgame_2019">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</owl:Thing>
-
-<owl:Thing rdf:about="#Iron_Man_2008">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</owl:Thing>
-
-<owl:Thing rdf:about="#Русский_ковчег">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</owl:Thing>
+<rdf:RDF xmlns="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#"
+     xml:base="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17"/>
+    
 
 
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#director -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#director">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster_link -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster_link">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#star -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#star">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#writer -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#writer">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_for_synonym -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#has_for_synonym">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ahí_va_el_diablo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ahí_va_el_diablo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Anthony_Russo -->
+
+    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Anthony_Russo">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <director rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Avengers_Endgame_2019"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Avengers_Endgame_2019 -->
+
+    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Avengers_Endgame_2019">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Iron_Man_2008 -->
+
+    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Iron_Man_2008">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Jon_Favreau -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Jon_Favreau">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+        <director rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Iron_Man_2008"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Robert_Downey_Jr -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Robert_Downey_Jr">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+        <director rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Русский_ковчег"/>
+        <star rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Iron_Man_2008"/>
+        <writer rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Русский_ковчег"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Wie_küsst_man_einen_Millionär -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Wie_küsst_man_einen_Millionär">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+        <poster_link rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#imdb_link"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#director_A -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#director_A">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#imdb_link -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#imdb_link">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#poster"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#star_A -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#star_A">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#person"/>
+        <star rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Ahí_va_el_diablo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Русский_ковчег -->
+
+    <owl:Thing rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#Русский_ковчег">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#かぐや姫の物語 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#かぐや姫の物語">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#疯狂赛车 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#疯狂赛车">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#부산행 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#부산행">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#La_Règle_du_Jeu_(1939) -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#La_Règle_du_Jeu_(1939)">
+        <rdf:type rdf:resource="http://www.semanticweb.org/yuhaomao/ontologies/2019/9/untitled-ontology-17#movie"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
