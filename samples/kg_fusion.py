@@ -1,7 +1,7 @@
 from py2neo import Graph, Node, Relationship,NodeMatcher,cypher
 import datetime
 import numpy as np
-
+import csv
 
 def find_node_name(name, username, password):
     """
@@ -54,16 +54,13 @@ def add_triples(triples, username, password):
 def movies_file(file_path):
     graph = Graph('http://localhost:7474', username="neo4j", password="0905")
     graph.run('match (n) detach delete n')
-    f = open(file_path, "r", encoding="utf-8")
-    lines = f.readlines()
-    for line in lines:
-        if line == "movieId,title,genres\n":
-            continue
-        else:
-            list_line = line.split(",")
-            movie_name = list_line[1]
-            movie_genres = list_line[2][:-2]
-            print(movie_name)
+    with open(file_path, 'r',encoding="utf-8") as csvfile:
+        reader = csv.reader(csvfile)
+        rows = [row for row in reader]
+        for row in rows:
+            print(row)
+            movie_name = row[1]
+            movie_genres = row[2]
             movie_genre_list = movie_genres.split("|")
             triples = []
             for movie_genre in movie_genre_list:
@@ -76,7 +73,7 @@ def movies_file2(file_path):
     with open(file_path, 'r', encoding="utf-8") as of:
         for line in of:
             print(line)
-            line_string = line[:-2]
+            line_string = line[:-1]
             list_line = line_string.split("::")
             movie_name = list_line[1]
             genres_string = list_line[2]
