@@ -1,6 +1,6 @@
 import numpy as np
 
-data_path = "../../data/"
+data_path = "../../../data/"
 
 
 def load_ratings_final(dataset):
