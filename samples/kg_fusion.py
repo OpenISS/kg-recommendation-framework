@@ -83,11 +83,11 @@ def movies_file2(file_path):
                 triples.append([str(movie_name),"genre",str(movie_genre)])
             add_triples(triples,"a","a")
 
-starttime = datetime.datetime.now()
+# starttime = datetime.datetime.now()
 file_path1 = "/Users/yuhaomao/Downloads/ml-latest-small/movies.csv"
 movies_file(file_path1)
 
-file_path2 = "/Users/yuhaomao/Downloads/ml-1m-2/movies.dat"
-movies_file2(file_path2)
-endtime = datetime.datetime.now()
-print((endtime - starttime).seconds)
+# file_path2 = "/Users/yuhaomao/Downloads/ml-1m-2/movies.dat"
+# movies_file2(file_path2)
+# endtime = datetime.datetime.now()
+# print((endtime - starttime).seconds)

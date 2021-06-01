@@ -7,7 +7,7 @@ class networkx_viewer:
         self.individual_list = individual_list
         self.total_class_dict = total_class_dict
         self.rdf_about = rdf_about
-    
+
     def query_individual_content(self,individual_name,path):
         """
         query individual contents
@@ -55,7 +55,7 @@ class networkx_viewer:
         """
         query individual's class
         return a dict
-        
+
         for example:
         return {'star': 'x', 'director': 'x', 'poster_link': 'x', 'writer': 'x'}
         """
@@ -67,7 +67,7 @@ class networkx_viewer:
         for i in t:
             class_name = i[1].split("#")[-1]
             dict[class_name] = class_name
-            
+
         return dict
 
 
@@ -76,7 +76,7 @@ class networkx_viewer:
         for i in individual_list:
             total_class_dict = self.query_class_type(i,total_class_dict)
         return total_class_dict
-        
+
 
 def query_all_individuals(path):
     """
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     total_class_dict = {}
     network_v = networkx_viewer(individual_list,total_class_dict,rdf_about)
     network_v.individual_classes(individual_list,total_class_dict)
-    
+
     dict = {}
     for i in individual_list:
         if str(i) in dict:
@@ -139,7 +139,7 @@ if __name__ == "__main__":
                     sub_individual = dict[subindividual_dict[subindividual]]
                 else:
                     sub_individual = subindividual
-                    
+
                     G.add_node(sub_individual,name = sub_individual)
                     dict[sub_individual] = sub_individual
 
@@ -165,7 +165,7 @@ if __name__ == "__main__":
                     tmp5 = "has"+current_class_type[class_type]
                     total_class_dict["has"+current_class_type[class_type]] = tmp5
                     G.add_node(tmp5, classname=current_class_type[class_type])
-      
+
             G.add_edge(tmp5, individual_name, property="class")
 
     nx.draw_networkx(G)

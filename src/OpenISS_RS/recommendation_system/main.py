@@ -2,13 +2,14 @@ import argparse
 import numpy as np
 from data_loader import load_datas
 from train import train
+import datetime
 
 np.random.seed(250)
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-dataset', type=str, default='movie', help='which dataset to use')
-parser.add_argument('-n_epochs', type=int, default=2, help='the number of epochs')
+parser.add_argument('-n_epochs', type=int, default=20, help='the number of epochs')
 parser.add_argument('-dim', type=int, default=8, help='dimension of user and entity embeddings')
 parser.add_argument('-L', type=int, default=1, help='number of low layers')
 parser.add_argument('-H', type=int, default=1, help='number of high layers')
@@ -23,7 +24,13 @@ parser.add_argument('-result', type=str, default='result', help='model pd result
 show_loss = False
 show_topk = False
 
+
+starttime = datetime.datetime.now()
+
 args = parser.parse_args()
 data = load_datas(args)
 # data = 0
 train(args, data, show_loss, show_topk)
+
+endtime = datetime.datetime.now()
+print((endtime - starttime).seconds)
