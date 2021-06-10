@@ -1,69 +1,50 @@
-## Motivation ##
+# Knowledge Graph-based Recommendation System framework
+
+This code supplement's [Yuhao Mao](https://github.com/myh1234567)'s master's thesis "A Framework Design For Integrating Knowledge Graphs into Recommendation Systems" work and the resulting publication(s).
+The framework uses movies as an example and is generalizable into other media types.
+
+- Yuhao Mao, "A Framework Design For Integrating Knowledge Graphs into Recommendation Systems", Master's thesis, Concordia University, 2021
+- Yuhao Mao, Serguei A. Mokhov, Sudhir P. Mudur:
+Application of Knowledge Graphs to Provide Side Information for Improved Recommendation Accuracy. CoRR [abs/2101.03054](https://arxiv.org/abs/2101.03054) (2021)
+- Sudhir Mudur, Serguei Mokhov, and Yuhao Mao. 2021. A Framework for Enhancing Deep Learning Based Recommender Systems with Knowledge Graphs. In IDEAS 2021: 25th International Database Engineering Applications Symposium, July 14–16, 2021, Montreal, Canada. ACM, New York, NY, USA, 10 pages. https://doi.org/10.1145/1122445.1122456
+
+## Background ##
+
+### Motivation ###
 
 A recommendation system is needed as long as there are users, but since users have few ratings on items, there will be problems such as data sparsity. This problem can be solved by adding the knowledge graph as side information, but the existing solution does not include the construction of the knowledge graph. By adding the construction of the knowledge graph can help us better manage the data.
 
-----
-
-## What application need it:
+### What type of applications may need it
 
 - Movie RS
 - Book RS
 - News RS
 - User RS
 
-----
+---
 
-## Datasets
+### Datasets
 
-1. https://grouplens.org/datasets/movielens/
+- https://grouplens.org/datasets/movielens/
 
-----
+#### Evaluation
 
-## Evaluation
+- CTR (Click-Through-Rate)
 
-1. CTR (Click-Through-Rate)
+#### Dataset field sources
 
-----
+1. `kg_final.txt`: now_movie_id, relation, xxx
+2. `ratings_final.txt`: user_id, user_gender, user_age, user_job, new_movie_id, rating
 
-## References
-
-1.	Frame rate. https://en.wikipedia.org/wiki/Frame_rate. Accessed: 2019- 07-23.
-2.	Software framework. https://en.wikipedia.org/wiki/Software_framework. Accessed: 2019-06-22.
-3.	RDF OWL difference https://www.cambridgesemantics.com/blog/semantic-university/learn-owl-rdfs/rdfs-vs-owl/
-4.	Owlready2 documentation https://pythonhosted.org/Owlready2/
-5.	Py2neo documentation https://py2neo.org/2.0/
-6.	Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
-7.	auc&acc https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
-8.   	https://zhuanlan.zhihu.com/p/54325231
-9.     youtube： https://www.youtube.com/watch?v=BP0IZ1uyUDE
-10.   https://blog.csdn.net/dreamzuora/article/details/86543157
-
-----
-
-## Future work
-1. Java API wrapper
-2. Support different machine learning backend
-3. Support more storage methods and more input formats
-4. More effective loss function
-5. Full-platform support
-6. Auto installation
-
+---
 
 ## Software Requirements
 
 1. python3
-2. Neo4j  "https://neo4j.com/download/?ref=try-neo4j-lp"
+2. Neo4j: https://neo4j.com/download/?ref=try-neo4j-lp
 
----
+### Library Requirements
 
-## Dataset explaination
-
-1. kg_final.txt:   now_movie_id, relation, xxx
-2. ratings_final.txt:   user_id, user_gender, user_age, user_job, new_movie_id, rating
-
----
-
-## Library Requirements
 1. rdflib.  Version: 4.2.2 
 2. urllib.request.   '3.7'
 3. networkx.  '2.4'
@@ -83,8 +64,7 @@ A recommendation system is needed as long as there are users, but since users ha
 
 ### Installing on MacOS ###
 
-```
-#!bash
+```#!bash
 brew install python3
 pip3 install rdflib
 pip3 install urllib.request
@@ -102,13 +82,12 @@ pip3 install sklearn
 pip3 install linecache
 ```
 
-## Installing on EL7 
+### Installing on EL7 
 
 1. Clone the repo
 2. Install dependencies
 
-```
-#!bash
+```#!bash
 yum install python3 gcc python3-devel
 pip3 install requests
 pip3 install py2neo
@@ -117,33 +96,51 @@ pip3 install pandas
 ...
 ```
 
-## Samples:
+## Running
 
-1. [Framework usage examples](https://bitbucket.org/iss-v2-proj/video-recommender-system/src/master/samples/README.md)
----
+### Samples
 
-## Questions:
+- [Framework usage examples](samples/README.md)
 
-How to train a model:
-In src/recommendation_system/ folder.  and run main.py
+### Questions / FAQ
 
-What IDE did we use to develop code? 
-Recommend to use pycharm (any version). Or use text editing software such as vim.
+- How to train a model: go to `src/recommendation_system/` folder and run main.py
+- What IDE did we use to develop code? 
+Recommend to use PyCharm (any version). Or use any text editing software such as vim or VS Code.
+- How to run from command line: `python3 xxxx.py`
+- How to run from Google Colab? Upload all the files to colab, and click run.
 
-How to run from command line:
-python3 xxxx.py
+Tested MacOS version: macOS Mojave 10.14.6 
 
-How to run from Google Colab?
-upload all the file to colab, and click run.
+#### How to start
 
-Tested MacOS version: Mac Mojava 10.14.6 
+1. `cd ../web_crawler`,  `python3 add_infos.py` to get the `kg_additional` file. It includes movie director, writer and stars information.
+2. Start Neo4j desktop then `cd ../knowledge_graph`  and run `python3 main.py`. It create all triples in Neo4j.
+3. `cd ../recommendation_system/data_process` and run `triples2txt.py`, `ratings2txt.py`, `kg_final.py` to get `ratings_final.txt` and `kg_final.txt`
+4. `cd ../recommendation_system` and run `main.py`
 
-## How to start:
+----
 
-1. cd ../web_crawler  python3 add_infors.py  to get kg_additional file. It includes diretor information, writer information and stars information.
+## Future work / TODO
 
-2. Start Neo4j desktop then cd ../knowledge_graph  run python3 main.py. Create all triples in Neo4j.
+1. Java API wrapper
+2. Support different machine learning backends
+3. Support more storage methods and more input formats
+4. More effective loss function
+5. Full-platform support
+6. Auto installation
 
-3. cd ../recommendation system/data_process  run triples2txt.py ratings2txt.py kg_final.py to get ratings_final.txt kg_final.txt
+----
 
-4. cd ../recommendation system  run main.py
+## References
+
+1. Frame rate. https://en.wikipedia.org/wiki/Frame_rate. Accessed: 2019- 07-23.
+2. Software framework. https://en.wikipedia.org/wiki/Software_framework. Accessed: 2019-06-22.
+3. RDF OWL difference https://www.cambridgesemantics.com/blog/semantic-university/learn-owl-rdfs/rdfs-vs-owl/
+4. Owlready2 documentation https://pythonhosted.org/Owlready2/
+5. Py2neo documentation https://py2neo.org/2.0/
+6. Introduce to RS https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada
+7. auc&acc https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+8. https://zhuanlan.zhihu.com/p/54325231
+9. youtube： https://www.youtube.com/watch?v=BP0IZ1uyUDE
+10. https://blog.csdn.net/dreamzuora/article/details/86543157
