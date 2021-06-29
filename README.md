@@ -1,4 +1,5 @@
 # Knowledge Graph-based Recommendation System framework
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.5041194.svg)](https://doi.org/10.5281/zenodo.5041194)
 
 This code supplement's [Yuhao Mao](https://github.com/myh1234567)'s master's thesis "A Framework Design For Integrating Knowledge Graphs into Recommendation Systems" work and the resulting publication(s).
 The framework uses movies as an example and is generalizable into other media types.
