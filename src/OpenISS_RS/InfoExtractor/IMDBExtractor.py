@@ -45,20 +45,19 @@ class IMDB_extractor:
             for z in range(actor_qt):
                 if (data["actor"][z]["@type"] == "Person"):
                     self.stars.append(data["actor"][z]["name"])
-'''
-            for i in source:
-                contents = i.findAll("a")
-                for name in contents:
-                    str_content = str(name)
-                    if str_content[15:17] == self.rules:
-                        if self.count == 1:
-                            self.directors.append(name.get_text())
-                        if self.count == 2:
-                            self.writers.append(name.get_text())
-                        if self.count == 3:
-                            self.stars.append(name.get_text())
-                self.count += 1
-'''
+
+#            for i in source:
+#                contents = i.findAll("a")
+#                for name in contents:
+#                    str_content = str(name)
+#                    if str_content[15:17] == self.rules:
+#                        if self.count == 1:
+#                            self.directors.append(name.get_text())
+#                        if self.count == 2:
+#                            self.writers.append(name.get_text())
+#                        if self.count == 3:
+#                            self.stars.append(name.get_text())
+#                self.count += 1
         except:
             print("failed")
             
@@ -124,7 +123,8 @@ def search_id(name):
     if search == []:
         return None
     else:
-        return search[0].movieID
+#        return search[0].movieID
+        return search[0].getID()
 
 if __name__ == '__main__':
     dict_tmp = {}
