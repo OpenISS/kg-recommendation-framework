@@ -74,7 +74,7 @@ def imdb_extractor(dict_tmp,path):
         imdb_id = "tt" + imdb_id
         print(imdb_id)
         dict_tmp[movie_name] = imdb_id
-        url = "https://www.imdb.com/title/" + str(imdb_id)
+        url = "https://www.imdb.com/title/" + str(imdb_id) + '/'
         get_poster(movie_name, url)
         rules = "nm"
         IMDB_e = IMDB_extractor(url, rules)
@@ -104,7 +104,8 @@ def get_poster(movie_name,movie_url):
         html = response.read()
         soup = BeautifulSoup(html, 'html.parser')
         try:
-            image_url = soup.find('div', class_='poster').a.img['src']
+#            image_url = soup.find('div', class_='poster').a.img['src']
+            image_url = soup.find('div', class_='ipc-poster__poster-image').img['src']
             extension = '.txt'
             image_url = ''.join(image_url.partition('_')[0]) + extension
             filename =  str(movie_name) + extension
@@ -113,7 +114,7 @@ def get_poster(movie_name,movie_url):
                 f = open("../../../data/movie/kg_poster.txt", "a")
                 f.write(result)
                 f.close()
-        except AttributeError:
+        except TypeError:
             pass
         
 def search_id(name):
