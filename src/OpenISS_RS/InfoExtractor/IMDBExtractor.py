@@ -15,11 +15,37 @@ class IMDB_extractor:
         
     def extractor(self):
         try:
-            r = requests.get(self.url)
-            r.raise_for_status()
-            html = r.text
-            soup = BeautifulSoup(html, 'html.parser')
-            source = soup.find_all(class_="credit_summary_item")
+#            r = requests.get(self.url)
+#            r.raise_for_status()
+#            html = r.text
+#            soup = BeautifulSoup(html, 'html.parser')
+#            source = soup.find_all(class_="credit_summary_item")
+            page = requests.get(self.url)
+            page.raise_for_status()
+            soup = BeautifulSoup(page.content, 'html.parser')
+            data = json.loads(soup.find('script', type='application/ld+json').text)
+            try:
+                director_qt = len(data["director"])
+            except KeyError:
+                director_qt = 0
+            try:
+                writer_qt = len(data["creator"])
+            except KeyError:
+                writer_qt = 0
+            try:
+                actor_qt = len(data["actor"])
+            except KeyError:
+                actor_qt = 0
+            for x in range(director_qt):
+                if (data["director"][x]["@type"] == "Person"):
+                    self.directors.append(data["director"][x]["name"])
+            for y in range(writer_qt):
+                if (data["creator"][y]["@type"] == "Person"):
+                    self.writers.append(data["creator"][y]["name"])
+            for z in range(actor_qt):
+                if (data["actor"][z]["@type"] == "Person"):
+                    self.stars.append(data["actor"][z]["name"])
+'''
             for i in source:
                 contents = i.findAll("a")
                 for name in contents:
@@ -32,6 +58,7 @@ class IMDB_extractor:
                         if self.count == 3:
                             self.stars.append(name.get_text())
                 self.count += 1
+'''
         except:
             print("failed")
             
