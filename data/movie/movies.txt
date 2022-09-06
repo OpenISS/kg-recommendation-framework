@@ -113,7 +113,7 @@
 132::Jade (1995)::Thriller
 135::Down Periscope (1996)::Comedy
 137::Man of the Year (1995)::Documentary
-140::Up Close and Personal (1996)::Drama|Romance
+140::Up Close & Personal (1996)::Drama|Romance
 141::The Birdcage (1996)::Comedy
 144::The Brothers McMullen (1995)::Comedy
 145::Bad Boys (1995)::Action|Comedy|Crime|Drama|Thriller
@@ -1208,7 +1208,7 @@
 1605::Excess Baggage (1997)::Adventure|Romance
 1606::Kull the Conqueror (1997)::Action|Adventure
 1608::Air Force One (1997)::Action|Thriller
-1609::187 (1997)::Drama|Thriller
+1609::One Eight Seven (1997)::Drama|Thriller
 1610::The Hunt for Red October (1990)::Action|Adventure|Thriller
 1611::My Own Private Idaho (1991)::Drama|Romance
 1612::Kiss Me, Guido (1997)::Comedy
@@ -1379,7 +1379,7 @@
 1888::Hope Floats (1998)::Comedy|Drama|Romance
 1889::Insomnia (1997)::Drama|Mystery|Thriller
 1891::The Ugly (1997)::Horror|Thriller
-1892::Perfect Murder, A (1998)::Thriller
+1892::A Perfect Murder (1998)::Thriller
 1893::Beyond Silence (1996)::Drama
 1894::Six Days Seven Nights (1998)::Adventure|Comedy|Romance
 1895::Can't Hardly Wait (1998)::Comedy|Drama|Romance
@@ -1776,7 +1776,7 @@
 2373::Red Sonja (1985)::Action|Adventure|Fantasy
 2374::Gung Ho (1986)::Comedy|Drama
 2375::The Money Pit (1986)::Comedy
-2376::View to a Kill, A (1985)::Action|Adventure|Thriller
+2376::A View to a Kill (1985)::Action|Adventure|Thriller
 2377::Lifeforce (1985)::Horror|Sci-Fi
 2378::Police Academy (1984)::Comedy|Crime
 2379::Police Academy 2: Their First Assignment (1985)::Comedy|Crime
@@ -2061,7 +2061,7 @@
 2739::The Color Purple (1985)::Drama
 2740::The Kindred (1987)::Horror|Sci-Fi
 2741::No Mercy (1986)::Action|Crime|Thriller
-2742::MÃ©nage (1986)::Comedy|Drama
+2742::Ménage (1986)::Comedy|Drama
 2743::Native Son (1986)::Drama
 2744::Otello (1986)::Drama
 2745::The Mission (1986)::Drama
@@ -2330,7 +2330,7 @@
 3086::Babes in Toyland (1934)::Children|Comedy|Fantasy|Musical
 3087::Scrooged (1988)::Comedy|Fantasy|Romance
 3088::Harvey (1950)::Comedy|Fantasy
-3089::Bicycle Thieves (a.k.a. The Bicycle Thieves) (Ladri di biciclette) (1948)::Drama
+3089::Bicycle Thieves (1948)::Drama
 3090::Matewan (1987)::Drama
 3091::Kagemusha (1980)::Drama|War
 3093::McCabe & Mrs. Miller (1971)::Drama|Western
@@ -2401,7 +2401,7 @@
 3183::The Third Miracle (1999)::Drama
 3185::Snow Falling on Cedars (1999)::Drama
 3186::Girl, Interrupted (1999)::Drama
-3189::My Dog Skip (1999)::Children|Drama
+3189::My Dog Skip (2000)::Children|Drama
 3190::Supernova (2000)::Adventure|Sci-Fi|Thriller
 3192::The Terrorist (Theeviravaathi) (1998)::Drama
 3194::The Way We Were (1973)::Drama|Romance
@@ -2701,7 +2701,7 @@
 3623::Mission: Impossible II (2000)::Action|Adventure|Thriller
 3624::Shanghai Noon (2000)::Action|Adventure|Comedy|Western
 3625::Better Living Through Circuitry (1999)::Documentary
-3626::8 Â½ Women (a.k.a. Eight and a Half Women) (1999)::Comedy
+3626::8 ½ Women (1999)::Comedy
 3627::Carnival of Souls (1962)::Horror|Thriller
 3628::Flying Tigers (1942)::Action|Drama|Romance|War
 3629::The Gold Rush (1925)::Adventure|Comedy|Romance
@@ -2929,7 +2929,7 @@
 3927::Fantastic Voyage (1966)::Adventure|Sci-Fi
 3928::Abbott and Costello Meet Frankenstein (1948)::Comedy|Horror
 3929::The Bank Dick (1940)::Comedy
-3930::The Creature from the Black Lagoon (1954)::Adventure|Horror|Sci-Fi
+3930::Creature from the Black Lagoon (1954)::Adventure|Horror|Sci-Fi
 3932::The Invisible Man (1933)::Horror|Sci-Fi
 3933::The Killer Shrews (1959)::Horror|Sci-Fi
 3937::Runaway (1984)::Sci-Fi|Thriller
@@ -2989,7 +2989,7 @@
 4002::Planes, Trains & Automobiles (1987)::Comedy
 4003::She's Having a Baby (1988)::Comedy
 4005::The Living Daylights (1987)::Action|Adventure|Thriller
-4006::Transformers: The Movie (1986)::Adventure|Animation|Children|Sci-Fi
+4006::The Transformers: The Movie (1986)::Adventure|Animation|Children|Sci-Fi
 4007::Wall Street (1987)::Drama
 4008::Born on the Fourth of July (1989)::Drama|War
 4009::Talk Radio (1988)::Drama
