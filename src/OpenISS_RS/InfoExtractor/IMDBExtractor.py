@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from imdb import IMDb
 import urllib.request
 import base64
+import json
 
 class IMDB_extractor:
     def __init__(self,url,rules):
@@ -15,11 +16,11 @@ class IMDB_extractor:
         
     def extractor(self):
         try:
-#            r = requests.get(self.url)
-#            r.raise_for_status()
-#            html = r.text
+ #           r = requests.get(self.url)
+ #           r.raise_for_status()
+ #           html = r.text
 #            soup = BeautifulSoup(html, 'html.parser')
-#            source = soup.find_all(class_="credit_summary_item")
+#            source = soup.find_all(class_="ipc-metadata-list-item__list-content-item--link", href=True)
             page = requests.get(self.url)
             page.raise_for_status()
             soup = BeautifulSoup(page.content, 'html.parser')
@@ -39,16 +40,22 @@ class IMDB_extractor:
             for x in range(director_qt):
                 if (data["director"][x]["@type"] == "Person"):
                     self.directors.append(data["director"][x]["name"])
+#                    print('------Director----')
+#                    print(data["director"][x]["name"])
             for y in range(writer_qt):
                 if (data["creator"][y]["@type"] == "Person"):
                     self.writers.append(data["creator"][y]["name"])
+#                    print('------Writers----')
+#                    print(data["creator"][y]["name"])
             for z in range(actor_qt):
                 if (data["actor"][z]["@type"] == "Person"):
                     self.stars.append(data["actor"][z]["name"])
+#                    print('------Actors----')
+#                    print(data["actor"][z]["name"])
 
 #            for i in source:
 #                contents = i.findAll("a")
-#                for name in contents:
+#                for name in source:
 #                    str_content = str(name)
 #                    if str_content[15:17] == self.rules:
 #                        if self.count == 1:
@@ -69,6 +76,7 @@ def imdb_extractor(dict_tmp,path):
     for row in lines:
         old_movie_id = row.split("::")[0]
         movie_name = row.split("::")[1]
+        print(movie_name)
         imdb_id = search_id(movie_name)
         imdb_id = "tt" + imdb_id
         print(imdb_id)
@@ -81,16 +89,16 @@ def imdb_extractor(dict_tmp,path):
         result = ""
         for director in IMDB_e.directors:
             result += str(movie_name) + "\t" + "directors" + "\t" + str(director) + "\n"
-            print(result)
+#            print(result)
 
         for writer in IMDB_e.writers:
             result += str(movie_name) + "\t" + "writers" + "\t" + str(writer) + "\n"
-            print(result)
+#            print(result)
 
         for star in IMDB_e.stars:
             result += str(movie_name) + "\t" + "stars" + "\t" + str(star) + "\n"
-            print(result)
-        f = open("../../../data/movie/kg_additional.txt", "a")
+#            print(result)
+        f = open("../../../data/movie/kg_additional2.txt", "a")
         f.write(result)
         f.close()
 
@@ -99,15 +107,22 @@ def imdb_extractor(dict_tmp,path):
 
 
 def get_poster(movie_name,movie_url):
+#    req = urllib.request.Request(movie_url, headers={'User-Agent': 'Mozilla/5.0'})
     with urllib.request.urlopen(movie_url) as response:
         html = response.read()
         soup = BeautifulSoup(html, 'html.parser')
+#        print('2222')
+#       print(soup )
+#        image_url = soup.find('div', class_='poster').a.img['src']
+#        print(image_url)
         try:
 #            image_url = soup.find('div', class_='poster').a.img['src']
             image_url = soup.find('div', class_='ipc-poster__poster-image').img['src']
+ #           print(image_url)
             extension = '.txt'
             image_url = ''.join(image_url.partition('_')[0]) + extension
             filename =  str(movie_name) + extension
+#            print ('33333')
             with urllib.request.urlopen(image_url) as response:
                 result = str(movie_name) + "\t" + str(base64.b64encode(response.read())) + "\n"
                 f = open("../../../data/movie/kg_poster.txt", "a")
