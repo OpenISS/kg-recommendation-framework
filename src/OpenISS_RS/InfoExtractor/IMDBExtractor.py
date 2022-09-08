@@ -98,7 +98,7 @@ def imdb_extractor(dict_tmp,path):
         for star in IMDB_e.stars:
             result += str(movie_name) + "\t" + "stars" + "\t" + str(star) + "\n"
 #            print(result)
-        f = open("../../../data/movie/kg_additional2.txt", "a")
+        f = open("../../../data/movie/kg_additional.txt", "a")
         f.write(result)
         f.close()
 
