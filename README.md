@@ -4,10 +4,10 @@
 This code supplement's [Yuhao Mao](https://github.com/myh1234567)'s master's thesis "A Framework Design For Integrating Knowledge Graphs into Recommendation Systems" work and the resulting publication(s).
 The framework uses movies as an example and is generalizable into other media types.
 
-- Yuhao Mao, "A Framework Design For Integrating Knowledge Graphs into Recommendation Systems", Master's thesis, Concordia University, 2021
+- Yuhao Mao, "[A Framework Design For Integrating Knowledge Graphs into Recommendation Systems](https://spectrum.library.concordia.ca/id/eprint/988028/)", Master's thesis, Concordia University, 2021
 - Yuhao Mao, Serguei A. Mokhov, Sudhir P. Mudur:
 Application of Knowledge Graphs to Provide Side Information for Improved Recommendation Accuracy. CoRR [abs/2101.03054](https://arxiv.org/abs/2101.03054) (2021)
-- Sudhir Mudur, Serguei Mokhov, and Yuhao Mao. 2021. A Framework for Enhancing Deep Learning Based Recommender Systems with Knowledge Graphs. In IDEAS 2021: 25th International Database Engineering Applications Symposium, July 14–16, 2021, Montreal, Canada. ACM, New York, NY, USA, 10 pages. https://doi.org/10.1145/1122445.1122456
+- Sudhir Mudur, Serguei Mokhov, and Yuhao Mao. 2021. A Framework for Enhancing Deep Learning Based Recommender Systems with Knowledge Graphs. In IDEAS 2021: 25th International Database Engineering Applications Symposium, July 14–16, 2021, Montreal, Canada. ACM, New York, NY, USA, 10 pages. [DOI: 10.1145/3472163.3472183](https://doi.org/10.1145/3472163.3472183)
 
 ## Background ##
 
