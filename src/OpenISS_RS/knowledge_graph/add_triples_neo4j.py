@@ -6,7 +6,9 @@ def find_node_name(name,username,password):
     find node which name == "Toy Story (1995)")
     return True
     """
-    graph = Graph('http://localhost:7474', username= username, password=password)
+#    graph = Graph('http://localhost:7474', username= username, password=password)
+#    graph = Graph(host="localhost", auth=(username, password))
+    graph = Graph("bolt://localhost:7687", auth=(username, password))  
     matcher = NodeMatcher(graph)
     result = matcher.match(name=name).first()
     # print(result)
@@ -21,7 +23,9 @@ def add_triples(triples,username,password):
     username: Neo4j username
     password: Neo4j password
     """
-    graph = Graph('http://localhost:7474', username=username, password=password)
+#    graph = Graph('http://localhost:7474', username=username, password=password)
+#    graph = Graph(host="localhost", auth=(username, password))
+    graph = Graph("bolt://localhost:7687", auth=(username, password))
     for i in triples:
         head = i[0]
         relation = i[1]
@@ -53,6 +57,6 @@ triples = [['Robert_Downey_Jr.', 'director', 'Русский_ковчег']]
 # ['Jon_Favreau', 'director', 'Iron_Man_(2008)']
 # ['star_A', 'star', 'Ahí_va_el_diablo']
 
-add_triples(triples,"neo4j","0905")
+add_triples(triples,"neo4j","neo4neo")
 
 

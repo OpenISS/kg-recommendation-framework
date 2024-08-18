@@ -3,7 +3,9 @@ from py2neo import Graph, Node, Relationship,NodeMatcher
 import pandas as pd
 import datetime
 
-graph = Graph('http://localhost:7474', username='neo4j', password='0905')
+username = 'neo4j'
+password = 'neo4neo'
+graph = Graph('http://localhost:7474', auth=(username, password))
 
 class storage_mode():
     
@@ -231,8 +233,8 @@ def Storage_neo4j(parameter):
             
         elif i == "movie_info":
             print("movie_info")
-            # kg_sideinforamtion_path = "../../data/movie/kg_additional.txt"
-            # storage_m.movie_director(kg_sideinforamtion_path)
+            kg_sideinforamtion_path = "../../../data/movie/kg_additional.txt"
+            storage_m.movie_director('a',kg_sideinforamtion_path)
 
 #
 # from RDFManager import Storage_rdf
